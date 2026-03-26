@@ -1,16 +1,16 @@
-// src/pages/MyProjects.tsx
-import { useLang } from "../context/LangContext";
+// MyProjects.tsx
 import { useTheme } from "../context/ThemeContext";
 import type { CSSProperties } from "react";
-import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 
 export interface Project {
+  id: string;
   title: string;
+  cover: string;
+  users: string;
+  region: string;
   tags: string[];
   shortDesc: string;
-  benefit: string;
-  description: string;
 }
 
 interface Props {
@@ -18,68 +18,158 @@ interface Props {
 }
 
 export default function MyProjects({ openCase }: Props) {
-  const { lang } = useLang();
   const { theme } = useTheme();
-  const [reveal, setReveal] = useState(false);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setReveal(true), 200);
-    return () => clearTimeout(timer);
-  }, []);
+  const bg = theme === "light" ? "#F6F7FB" : "#0E0E11";
+  const text = theme === "light" ? "#111" : "#EEE";
 
-  const bgColor = theme === "light" ? "#F7F4F2" : "#121212";
-  const textColor = theme === "light" ? "#111" : "#EEE";
-  const cardBg = theme === "light" ? "#fff" : "#1E1E1E";
-  const cardShadow = theme === "light"
-    ? "0 20px 40px rgba(0,0,0,.08)"
-    : "0 20px 40px rgba(255,255,255,.05)";
-
-  const tagColors: Record<string,string> = {
-    "Power Platform": "#7D5FFF",
-    "Pipefy": "#4DA6FF",
-    "RPA": "#FF914D"
+  const tagColors: Record<string, string> = {
+    "Power Apps": "#7D5FFF",
+    Dataverse: "#FF914D",
+    Automation: "#00C48C",
+    Canvas: "#FF5DA2",
+    "Model Driven": "#4DA6FF",
+    SharePoint: "#1DA57A",
+    Dataflows: "#FFB547",
+    "Power Automate": "#0066FF"
   };
 
   const projects: Project[] = [
-    { title: "Power Apps Governance", tags: ["Power Platform"], shortDesc: lang === "en" ? "Monitors environments and compliance" : "Monitora ambientes e conformidade", benefit: lang === "en" ? "Saved 20h/week" : "Economizou 20h/semana", description: lang === "en" ? "Full governance solution to monitor Power Platform usage." : "Solução completa de governança para monitorar uso do Power Platform." },
-    { title: "Vendor RPA", tags: ["RPA"], shortDesc: lang === "en" ? "Automates vendor onboarding" : "Automatiza cadastro de fornecedores", benefit: lang === "en" ? "Saved $100/week" : "Economizou R$500/semana", description: lang === "en" ? "UiPath bot automating vendor workflows." : "Bot UiPath automatizando fluxos de fornecedores." },
-    { title: "Pipefy Automation", tags: ["Pipefy"], shortDesc: lang === "en" ? "Internal workflow automation" : "Automatiza fluxos internos", benefit: lang === "en" ? "Saved 15h/week" : "Economizou 15h/semana", description: lang === "en" ? "Improved process efficiency using Pipefy." : "Melhorou a eficiência dos processos usando Pipefy." },
-    { title: "Inventory Tracker", tags: ["Power Platform"], shortDesc: lang === "en" ? "Track stock levels" : "Acompanha níveis de estoque", benefit: lang === "en" ? "Reduced errors 40%" : "Reduziu erros em 40%", description: lang === "en" ? "Power Apps app to monitor inventory and alerts." : "Aplicativo Power Apps para monitorar inventário e alertas." },
-    { title: "Customer Feedback Bot", tags: ["RPA"], shortDesc: lang === "en" ? "Collects feedback automatically" : "Coleta feedback automaticamente", benefit: lang === "en" ? "Saved 10h/week" : "Economizou 10h/semana", description: lang === "en" ? "UiPath bot sending surveys and aggregating responses." : "Bot UiPath enviando pesquisas e agregando respostas." },
-    { title: "Sales Dashboard", tags: ["Power Platform"], shortDesc: lang === "en" ? "Interactive dashboard for sales" : "Dashboard interativo de vendas", benefit: lang === "en" ? "Improved reporting" : "Acelerou relatórios", description: lang === "en" ? "Power BI + Power Apps dashboard for KPIs." : "Dashboard Power BI + Power Apps para KPIs." },
-    { title: "Invoice Automation", tags: ["RPA"], shortDesc: lang === "en" ? "Automates invoice processing" : "Automatiza faturas", benefit: lang === "en" ? "Reduced processing time 70%" : "Reduziu tempo 70%", description: lang === "en" ? "UiPath bot for reading and registering invoices." : "Bot UiPath para ler e registrar faturas." },
-    { title: "Employee Onboarding App", tags: ["Power Platform"], shortDesc: lang === "en" ? "Digital onboarding workflow" : "Onboarding digital", benefit: lang === "en" ? "Standardized process" : "Processo padronizado", description: lang === "en" ? "Power Apps app guiding new hires." : "Aplicativo Power Apps guiando novos colaboradores." },
-    { title: "Support Ticket Automation", tags: ["Pipefy"], shortDesc: lang === "en" ? "Automates ticket routing" : "Automatiza tickets", benefit: lang === "en" ? "Saved 12h/week" : "Economizou 12h/semana", description: lang === "en" ? "Pipefy automates ticket assignment." : "Automação Pipefy atribuindo tickets." },
-    { title: "Marketing Campaign Tracker", tags: ["Power Platform"], shortDesc: lang === "en" ? "Tracks campaign performance" : "Acompanha campanhas", benefit: lang === "en" ? "Improved ROI" : "Melhorou ROI", description: lang === "en" ? "Power Apps + Power BI tracking campaigns." : "Power Apps + Power BI acompanhando campanhas." }
+    {
+      id: "actus",
+      title: "ACTUS Compliance Platform",
+      cover:
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1400",
+      users: "3000+ users",
+      region: "South America",
+      tags: ["Power Apps", "Model Driven", "Dataverse", "Automation"],
+      shortDesc:
+        "Enterprise governance platform managing incident lifecycle and compliance workflows."
+    },
+    {
+      id: "bm",
+      title: "Measurement Report",
+      cover:
+        "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1400",
+      users: "800+ users",
+      region: "Brazil",
+      tags: ["Power Apps", "Canvas", "Automation", "Dataverse"],
+      shortDesc:
+        "Environmental operations app automating supplier measurement and payment processes."
+    },
+    {
+      id: "remessa",
+      title: "Automated Remittance Pipeline",
+      cover:
+        "https://images.unsplash.com/photo-1605902711622-cfb43c4437cd?q=80&w=1400",
+      users: "Finance Team",
+      region: "Brazil",
+      tags: ["Power Apps", "Dataflows", "SharePoint", "Automation"],
+      shortDesc:
+        "Automated pipeline replacing manual spreadsheet processes, SAP extractions and remittance preparation."
+    },
+    {
+      id: "ipo",
+      title: "IPO Management App",
+      cover:
+        "https://images.unsplash.com/photo-1564866657311-196d1e9e16f8?q=80&w=1400",
+      users: "Regional IPO Teams",
+      region: "South America",
+      tags: ["Power Apps", "Canvas", "Dataverse", "Automation"],
+      shortDesc:
+        "Centralized app for managing IPO checklists, tracking progress and ensuring Information Security compliance."
+    },
+    {
+      id: "controle-de-delegados",
+      title: "Controle de Delegados",
+      cover:
+        "https://images.unsplash.com/photo-1581091012184-7ee295f4874b?q=80&w=1400",
+      users: "HR & Mobility",
+      region: "South America",
+      tags: ["Power Apps", "Canvas", "Dataverse", "Automation"],
+      shortDesc:
+        "Application to manage delegates vacation lifecycle, acquisition periods and payout reporting."
+    },
+    {
+      id: "indice",
+      title: "Be On Index Automation",
+      cover:
+        "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1400",
+      users: "Operations Teams",
+      region: "South America",
+      tags: ["Power Automate", "SharePoint", "Automation"],
+      shortDesc:
+        "Automated hierarchical index generation rebuilding document numbering and publishing updated PDF indexes."
+    },
+    {
+      id: "reconhecimento",
+      title: "HR Recognition Platform",
+      cover:
+        "https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&w=1400",
+      users: "South America Employees",
+      region: "South America",
+      tags: ["Power Apps", "Canvas", "Dataverse", "Power Automate"],
+      shortDesc:
+        "Interactive recognition platform enabling employees to reward colleagues through structured approval workflows."
+    },
+    {
+      id: "cambio-importacao",
+      title: "Import Exchange Request App",
+      cover:
+        "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1400",
+      users: "Treasury & Requesters",
+      region: "South America",
+      tags: ["Power Apps", "Canvas", "Automation", "Finance"],
+      shortDesc:
+        "Application streamlining foreign exchange request approvals and payment tracking."
+    }
   ];
 
   return (
     <>
-      <section style={{ ...styles.section, background: bgColor, color: textColor }}>
+      <section style={{ ...styles.section, background: bg, color: text }}>
         <div style={styles.container}>
-          <h1 style={styles.headline}>{lang === "en" ? "My Projects" : "Meus Projetos"}</h1>
-          <p style={styles.subline}>{lang === "en" ? "Click a project to see full details." : "Clique em um projeto para ver detalhes completos."}</p>
+          <h1 style={styles.title}>My Projects</h1>
 
-          <div style={styles.cardsContainer}>
-            {projects.map((p,i) => (
+          <div style={styles.grid}>
+            {projects.map((p) => (
               <div
-                key={i}
-                style={{
-                  ...styles.card,
-                  background: cardBg,
-                  boxShadow: cardShadow,
-                  transform: reveal ? "translateY(0)" : "translateY(20px)",
-                  opacity: reveal ? 1 : 0,
-                  transition: `0.5s ease ${(i+1)*0.1}s`
-                }}
+                key={p.id}
+                style={styles.card}
                 onClick={() => openCase(p)}
               >
-                <div style={styles.tagContainer}>
-                  {p.tags.map((t, idx) => <span key={idx} style={{...styles.tag, background: tagColors[t]}}>{t}</span>)}
+                <div
+                  style={{
+                    ...styles.cover,
+                    backgroundImage: `url(${p.cover})`
+                  }}
+                >
+                  <div style={styles.overlay} />
+
+                  <div style={styles.tags}>
+                    {p.tags.map((t) => (
+                      <span
+                        key={t}
+                        style={{
+                          ...styles.tag,
+                          background: tagColors[t] || "#888"
+                        }}
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <h3 style={styles.cardTitle}>{p.title}</h3>
-                <p style={styles.cardSubtitle}>{p.shortDesc}</p>
-                <p style={styles.cardBenefit}>{p.benefit}</p>
+
+                <div style={styles.content}>
+                  <h3 style={styles.cardTitle}>{p.title}</h3>
+                  <p style={styles.desc}>{p.shortDesc}</p>
+
+                  <div style={styles.meta}>
+                    <span>🌎 {p.region}</span>
+                    <span>👤 {p.users}</span>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
@@ -93,28 +183,38 @@ export default function MyProjects({ openCase }: Props) {
 
 const styles: Record<string, CSSProperties> = {
   section: { padding: "140px 20px" },
-  container: { maxWidth: 1280, margin: "auto", display: "flex", flexDirection: "column", gap: 40 },
-  headline: { fontSize: 42, fontWeight: 700, margin: 0 },
-  subline: { fontSize: 18, lineHeight: 1.6 },
-  cardsContainer: {
+  container: { maxWidth: 1300, margin: "auto" },
+  title: { fontSize: 44, marginBottom: 40 },
+  grid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-    gap: 24
+    gridTemplateColumns: "repeat(auto-fit,minmax(340px,1fr))",
+    gap: 30
   },
   card: {
-    padding: 20,
-    borderRadius: 16,
+    borderRadius: 22,
+    overflow: "hidden",
     cursor: "pointer",
-    textAlign: "center",
-    transition: "0.3s",
-    display: "flex",
-    flexDirection: "column",
-    gap: 12
+    background: "#fff",
+    transition: ".35s",
+    boxShadow: "0 20px 50px rgba(0,0,0,.12)"
   },
-  tagContainer: {
+  cover: {
+    height: 200,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    position: "relative"
+  },
+  overlay: {
+    position: "absolute",
+    inset: 0,
+    background: "linear-gradient(180deg,rgba(0,0,0,.1),rgba(0,0,0,.6))"
+  },
+  tags: {
+    position: "absolute",
+    bottom: 12,
+    left: 12,
     display: "flex",
     gap: 6,
-    justifyContent: "center",
     flexWrap: "wrap"
   },
   tag: {
@@ -122,9 +222,22 @@ const styles: Record<string, CSSProperties> = {
     borderRadius: 8,
     color: "#fff",
     fontWeight: 600,
-    fontSize: 12
+    fontSize: 11
   },
-  cardTitle: { fontSize: 16, fontWeight: 600, color: "#380f3b" },
-  cardSubtitle: { fontSize: 14, color: "#555" },
-  cardBenefit: { fontSize: 13, fontWeight: 600, color: "#7D5FFF" }
+  content: {
+    padding: 20,
+    display: "flex",
+    flexDirection: "column",
+    gap: 10
+  },
+  cardTitle: { fontSize: 18, fontWeight: 700 },
+  desc: { fontSize: 14, lineHeight: 1.5, color: "#555" },
+  meta: {
+    marginTop: 10,
+    display: "flex",
+    justifyContent: "space-between",
+    fontSize: 12,
+    fontWeight: 600,
+    color: "#7D5FFF"
+  }
 };
