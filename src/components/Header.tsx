@@ -13,7 +13,7 @@ export default function Header({ onNavigate }: Props) {
   const { lang, toggleLang } = useLang();
 
   useEffect(() => {
-    const h = () => setScroll(window.scrollY > 40);
+    const h = () => setScroll(window.scrollY > -10);
     window.addEventListener("scroll", h);
     return () => window.removeEventListener("scroll", h);
   }, []);
@@ -42,6 +42,7 @@ export default function Header({ onNavigate }: Props) {
         style={{
           width: "90%",
           maxWidth: 1200,
+          height: 80,
           margin: "auto",
           display: "flex",
           justifyContent: "space-between",

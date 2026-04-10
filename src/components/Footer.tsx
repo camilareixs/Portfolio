@@ -6,7 +6,7 @@ export default function Footer() {
   const { lang } = useLang();
   const { theme } = useTheme();
 
-  const bgColor = theme === "light" ? "#EAD7F2" : "#1A1A1A";
+  const bgColor = theme === "light" ? "#fff" : "#1A1A1A";
   const textColor = theme === "light" ? "#380f3b" : "#D8B4FE";
 
   return (

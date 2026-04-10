@@ -1,78 +1,47 @@
+/* RESET */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+}
+
+/* BODY (tema base) */
 body {
   margin: 0;
   font-family: Inter, sans-serif;
-}
-
-.page {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: 0.45s;
-}
-
-.page.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: 0.7s;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.mesh {
-  position: absolute;
-  width: 900px;
-  height: 900px;
-  background: radial-gradient(circle, #7c4d77 0%, transparent 60%);
-  filter: blur(140px);
-  opacity: 0.25;
-  top: -200px;
-  right: -200px;
-}
-
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-22px); }
-  100% { transform: translateY(0); }
-}
-
-/* Reset básico */
-body {
-  margin: 0;
-  font-family: Inter, sans-serif;
-  background: #f7f4f2;
+  background: #f7f4f2; /* light */
   color: #111;
 }
 
-/* Page fade/transition */
+body.dark {
+  background: #1A1A1A; /* dark */
+  color: #EEE;
+}
+
+/* PAGE TRANSITION */
 .page {
   opacity: 0;
   transform: translateY(20px);
   transition: 0.45s;
 }
+
 .page.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Reveal animations */
+/* REVEAL ANIMATION */
 .reveal {
   opacity: 0;
   transform: translateY(40px);
   transition: 0.7s;
 }
+
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Hero mesh / background glow */
+/* HERO GLOW (MESH) */
 .mesh {
   position: absolute;
   width: 900px;
@@ -84,39 +53,39 @@ body {
   right: -200px;
 }
 
-/* Floating mockups */
+/* FLOAT ANIMATION */
 @keyframes float {
   0% { transform: translateY(0); }
   50% { transform: translateY(-22px); }
   100% { transform: translateY(0); }
 }
 
-/* NAV / Header Buttons */
+/* NAV BUTTONS */
 button {
   font-family: Inter, sans-serif;
 }
 
-/* Hover + transition para todos os nav buttons */
 header nav button {
   transition: 0.3s;
 }
+
 header nav button:hover {
   transform: translateY(-3px);
   background: #240726;
 }
 
-/* Mobile menu escondido por padrão */
+/* MOBILE */
 @media (max-width: 900px) {
   header nav {
-    display: none; /* nav normal escondida */
+    display: none;
   }
 
   header button.menuBtn {
-    display: block; /* botão de menu visível */
+    display: block;
   }
 }
 
-/* Menu mobile */
+/* MOBILE MENU */
 .mobileMenu {
   display: flex;
   flex-direction: column;
@@ -131,50 +100,75 @@ header nav button:hover {
   z-index: 999;
 }
 
-/* Button ghost hover */
+/* GHOST BUTTON */
 button.variant-ghost:hover {
   background: #380f3b;
   color: white;
 }
 
-/* Cards Projects hover */
+/* PROJECT CARDS */
 section div.card {
   transition: transform 0.35s, box-shadow 0.35s;
 }
+
 section div.card:hover {
   transform: translateY(-12px) scale(1.02);
   box-shadow: 0 50px 100px rgba(0,0,0,.18);
 }
 
-/* Hero Section */
+/* HERO SECTION (CORRIGIDO) */
 section.hero {
   min-height: 100vh;
   display: flex;
   align-items: center;
   position: relative;
   overflow: hidden;
-  background: #f7f4f2;
+  background: transparent; /* 👈 ESSENCIAL */
 }
+
 section.hero h1 {
   font-size: 68px;
   line-height: 1.05;
   margin-top: 24px;
 }
+
 section.hero p {
   margin-top: 24px;
   font-size: 18px;
   color: #666;
 }
+
 section.hero .actions button {
   margin-right: 16px;
   cursor: pointer;
 }
 
-/* Metrics */
+/* METRICS */
 section.hero .metrics h3 {
   font-size: 32px;
   margin: 0;
 }
+
 section.hero .metrics span {
   color: #777;
+}
+
+/* HOVER CARDS */
+.metric-card {
+  transition: .35s;
+}
+
+.metric-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 40px 80px rgba(99,102,241,.25);
+}
+
+/* VIDEO */
+.video-box {
+  transition: .4s;
+}
+
+.video-box:hover {
+  opacity: .3;
+  transform: scale(1.03);
 }
