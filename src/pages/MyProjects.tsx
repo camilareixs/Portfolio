@@ -34,8 +34,8 @@ export default function MyProjects({ openCase }: Props) {
   const projects: Project[] = [
     {
       id: "actus",
-      title: "ACTUS Compliance Platform",
-      cover: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1400",
+      title: "ACTUS Platform",
+      cover: "/public/actus.jpg",
       users: "2800+ users",
       region: "LATAM",
       domain: { pt: "Compliance", en: "Compliance" },
@@ -48,7 +48,7 @@ export default function MyProjects({ openCase }: Props) {
     {
       id: "bm",
       title: "Measurement Report",
-      cover: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1400",
+      cover: "/public/bmop.png",
       users: "-85% manual work",
       region: "Brasil",
       domain: { pt: "Financeiro", en: "Finance" },
@@ -95,19 +95,6 @@ export default function MyProjects({ openCase }: Props) {
       shortDesc: {
         pt: "Automação do ciclo de férias e pagamentos.",
         en: "Automation of vacation lifecycle and payments."
-      }
-    },
-    {
-      id: "indice",
-      title: "Be On Index Automation",
-      cover: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1400",
-      users: "Operations",
-      region: "LATAM",
-      domain: { pt: "Operações", en: "Operations" },
-      tech: ["Power Automate", "Automation"],
-      shortDesc: {
-        pt: "Geração automática de estruturas e documentos.",
-        en: "Automatic structure and document generation."
       }
     },
     {
