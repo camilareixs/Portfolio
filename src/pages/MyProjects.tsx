@@ -61,7 +61,7 @@ export default function MyProjects({ openCase }: Props) {
     {
       id: "remessa",
       title: "Automated Remittance Pipeline",
-      cover: "https://images.unsplash.com/photo-1605902711622-cfb43c4437cd?q=80&w=1400",
+      cover: "/public/remessa.png",
       users: "Finance Team",
       region: "Brazil",
       domain: { pt: "Financeiro", en: "Finance" },
