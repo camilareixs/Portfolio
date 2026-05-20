@@ -16,56 +16,64 @@ export default function CaseControleDelegados({ goBack }: Props) {
     en: {
       back: "Back to Projects",
       tag: "Mobility Governance Platform",
-      title: "Delegates Control — Mobility Management System",
+      title: "Delegates Control — Mobility Management Ecosystem",
       desc:
-        "Enterprise mobility application designed to manage inbound expatriate delegation periods, automate vacation entitlement calculations and replace a costly legacy platform with a scalable Power Platform solution.",
-      arch: "Platform Architecture",
-      flows: "Automation & Reporting",
-      ux: "User Experience Strategy",
-      impact: "Business Impact"
+        "Enterprise mobility governance platform developed to centralize inbound expatriate management across LATAM operations. The solution automated delegation tracking, vacation entitlement calculations, PDF reporting and operational governance workflows while replacing a costly legacy system with a scalable Power Platform ecosystem.",
+
+      video: "Platform Walkthrough",
+      arch: "Architecture",
+      automation: "My Role",
+      impact: "Impact",
+      integration: "Operational Workflow"
     },
+
     pt: {
       back: "Voltar aos Projetos",
       tag: "Plataforma de Governança de Mobilidade",
-      title: "Controle de Delegados — Sistema de Gestão de Mobilidade",
+      title: "Controle de Delegados — Ecossistema de Gestão de Mobilidade",
       desc:
-        "Aplicação enterprise desenvolvida para gerenciar períodos de delegação de expatriados inbound, automatizar cálculos de direito a férias e substituir um sistema legado custoso por uma solução escalável em Power Platform.",
-      arch: "Arquitetura da Plataforma",
-      flows: "Automação & Relatórios",
-      ux: "Estratégia de Experiência do Usuário",
-      impact: "Impacto no Negócio"
+        "Plataforma enterprise desenvolvida para centralizar a gestão de expatriados inbound em operações LATAM. A solução automatizou controle de períodos de delegação, cálculos de direito a férias, geração de relatórios PDF e fluxos operacionais de governança, substituindo um sistema legado custoso por um ecossistema escalável em Power Platform.",
+
+      video: "Demonstração da Plataforma",
+      arch: "Arquitetura",
+      automation: "Minha Atuação",
+      impact: "Impacto",
+      integration: "Fluxo Operacional"
     }
   };
 
   const tx = t[lang];
 
-  const accent = "#16A34A";
-  const accentSoft = "#86EFAC";
-
   const c = {
-    bg: dark
-      ? "radial-gradient(circle at 70% 10%, #052E1C 0%, #020617 60%)"
-      : "#F0FFF6",
-    card: dark ? "#0F1625" : "#FFFFFF",
-    border: dark ? "#1F2A44" : "#E6EAF2",
+    bg: dark ? "#020617" : "#F5F7FB",
+    card: dark ? "#0F172A" : "#FFFFFF",
+    border: dark ? "#1E293B" : "#E6EAF2",
     text: dark ? "#E8ECF8" : "#0F172A",
-    sub: dark ? "#9AA6C4" : "#64748B"
+    sub: dark ? "#94A3B8" : "#64748B",
+    accent: "#3B82F6"
   };
 
   return (
     <>
-      <section style={{ background: c.bg, padding: "120px 20px" }}>
+      <section
+        style={{
+          background: c.bg,
+          padding: "120px 20px",
+          overflowX: "hidden"
+        }}
+      >
         <div style={{ maxWidth: 1280, margin: "auto" }}>
 
+          {/* BACK */}
           <button
             onClick={goBack}
             style={{
               background: "none",
               border: "none",
-              color: accent,
+              color: c.accent,
               fontWeight: 600,
               cursor: "pointer",
-              marginBottom: 50
+              marginBottom: 40
             }}
           >
             ← {tx.back}
@@ -78,62 +86,74 @@ export default function CaseControleDelegados({ goBack }: Props) {
               border: `1px solid ${c.border}`,
               borderRadius: 20,
               padding: 60,
-              marginBottom: 60,
-              position: "relative",
-              overflow: "hidden"
+              marginBottom: 60
             }}
           >
-            <div
-              style={{
-                position: "absolute",
-                width: 420,
-                height: 420,
-                background: accent,
-                filter: "blur(160px)",
-                opacity: 0.18,
-                left: -120,
-                top: -140
-              }}
-            />
-
-            <span
-              style={{
-                color: accent,
-                fontWeight: 700,
-                fontSize: 12,
-                letterSpacing: 3
-              }}
-            >
+            <span style={{ color: c.accent, fontWeight: 700, fontSize: 12 }}>
               {tx.tag.toUpperCase()}
             </span>
 
-            <h1
-              style={{
-                fontSize: 48,
-                marginTop: 15,
-                marginBottom: 25,
-                color: c.text,
-                maxWidth: 900,
-                lineHeight: 1.1
-              }}
-            >
+            <h1 style={{ fontSize: 48, margin: "20px 0", color: c.text }}>
               {tx.title}
             </h1>
 
             <p
               style={{
                 fontSize: 18,
-                maxWidth: 820,
-                lineHeight: 1.9,
-                color: c.sub
+                color: c.sub,
+                maxWidth: 900,
+                lineHeight: 1.8
               }}
             >
               {tx.desc}
             </p>
           </div>
 
+          {/* VIDEO */}
+          <div
+            style={{
+              background: c.card,
+              border: `1px solid ${c.border}`,
+              borderRadius: 20,
+              padding: 30,
+              marginBottom: 60
+            }}
+          >
+            <h2 style={{ color: c.text, marginBottom: 20 }}>
+              {tx.video}
+            </h2>
+
+            <div
+              style={{
+                width: "100%",
+                height: 420,
+                borderRadius: 16,
+                overflow: "hidden"
+              }}
+            >
+              <video
+                src="/videos/controle.mp4"
+                controls
+                autoPlay
+                muted
+                loop
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover"
+                }}
+              />
+            </div>
+          </div>
+
           {/* GRID */}
-          <div style={{ display: "grid", gridTemplateColumns: "360px 1fr", gap: 50 }}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "minmax(0,360px) minmax(0,1fr)",
+              gap: 40
+            }}
+          >
 
             {/* SIDEBAR */}
             <aside
@@ -143,49 +163,72 @@ export default function CaseControleDelegados({ goBack }: Props) {
                 borderRadius: 20,
                 padding: 30,
                 height: "fit-content",
-                position: "sticky",
-                top: 120
+                minWidth: 0
               }}
             >
-              <Side title="STACK" items={["Power Apps", "Dataverse", "Power Automate", "SharePoint"]} accent={accent} c={c} />
-              <Side title="SCALE" items={["South America Coverage", "Inbound Delegates", "Regional Governance"]} accent={accent} c={c} />
-              <Side title="MODULES" items={["Delegate Registration", "Vacation Calculation", "PDF Reporting"]} accent={accent} c={c} />
+              <Side
+                title="CONTEXT"
+                items={[
+                  "LATAM Mobility Operations",
+                  "Inbound Delegate Governance",
+                  "Vacation Entitlement Automation",
+                  "Legacy Platform Replacement"
+                ]}
+                c={c}
+              />
             </aside>
 
             {/* MAIN */}
-            <main style={{ display: "flex", flexDirection: "column", gap: 40 }}>
-
-              <MetricGrid c={c} />
+            <main
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 40,
+                minWidth: 0
+              }}
+            >
 
               <Card title={tx.arch} c={c}>
-                Aplicação construída em Power Apps Canvas com Dataverse como base estruturada de dados.
-                Permite controle completo dos períodos de delegação, histórico de movimentações e gestão centralizada
-                de direitos a férias para expatriados inbound.
+                {lang === "pt"
+                  ? "A solução foi construída em Power Platform utilizando Power Apps para centralização operacional, Dataverse como camada estruturada de dados e Power Automate para automação de cálculos, geração de documentos e distribuição de relatórios. A arquitetura suporta controle completo do ciclo de delegação de expatriados inbound entre operações regionais."
+                  : "The solution was built on Power Platform using Power Apps for operational centralization, Dataverse as the structured data layer and Power Automate for calculation automation, document generation and report distribution. The architecture supports full lifecycle management of inbound expatriate delegation operations across regional units."}
               </Card>
 
-              <Card title={tx.flows} c={c}>
-                Automação implementada via Power Automate:
-                <ul>
-                  <li>Leitura de anexos e validação de dados</li>
-                  <li>Geração automática de relatórios PDF</li>
-                  <li>Distribuição por email para stakeholders</li>
-                  <li>Atualização automática de status e registros</li>
-                </ul>
+              <Card title={tx.automation} c={c}>
+                {lang === "pt"
+                  ? "Minha atuação envolveu evolução da plataforma, automação de regras operacionais e melhoria da experiência de uso para processos críticos de mobilidade. O trabalho incluiu implementação de cálculos automatizados de direito a férias, geração dinâmica de PDFs e integração de fluxos de comunicação entre stakeholders."
+                  : "My role involved platform evolution, operational rule automation and usability improvements for critical mobility processes. The work included automated vacation entitlement calculations, dynamic PDF generation and integration of communication workflows between stakeholders."}
               </Card>
 
-              <Card title={tx.ux} c={c}>
-                Interface redesenhada para substituir sistema legado com baixa usabilidade.
-                Estrutura focada em rapidez operacional, redução de erros e adoção por usuários não técnicos.
+              <Card title={tx.integration} c={c}>
+                <p style={{ marginBottom: 15 }}>
+                  {lang === "pt"
+                    ? "Fluxo operacional responsável por controlar períodos de delegação, validar regras de negócio e automatizar geração de documentação."
+                    : "Operational workflow responsible for controlling delegation periods, validating business rules and automating document generation."}
+                </p>
+
+                <pre
+                  style={{
+                    background: "#020617",
+                    color: "#E5E7EB",
+                    padding: 20,
+                    borderRadius: 12,
+                    fontSize: 12,
+                    overflowX: "auto"
+                  }}
+                >
+{`REGISTER Delegate
+→ Validate Delegation Rules
+→ Calculate Vacation Eligibility
+→ Generate PDF Report
+→ Notify Stakeholders`}
+                </pre>
               </Card>
 
               <Card title={tx.impact} c={c}>
-                Resultados estratégicos:
-                <ul>
-                  <li>Eliminação de custo mensal com plataforma antiga</li>
-                  <li>Controle digital completo de delegados inbound</li>
-                  <li>Relatórios confiáveis para pagamento de férias</li>
-                  <li>Maior visibilidade operacional regional</li>
-                </ul>
+                {lang === "pt"
+                  ? "A plataforma eliminou custos recorrentes do sistema legado, aumentou a confiabilidade operacional e trouxe maior controle sobre processos de mobilidade internacional. A automação reduziu dependências manuais, melhorou rastreabilidade e forneceu relatórios consistentes para tomada de decisão."
+                  : "The platform eliminated recurring legacy system costs, increased operational reliability and improved control over international mobility processes. Automation reduced manual dependencies, improved traceability and delivered consistent reporting for decision-making."}
               </Card>
 
             </main>
@@ -200,19 +243,14 @@ export default function CaseControleDelegados({ goBack }: Props) {
 
 /* COMPONENTS */
 
-function Side({ title, items, accent, c }: any) {
+function Side({ title, items, c }: any) {
   return (
-    <div style={{ marginBottom: 28 }}>
-      <h4 style={{
-        fontSize: 11,
-        letterSpacing: 3,
-        color: accent,
-        marginBottom: 10
-      }}>
+    <div style={{ marginBottom: 30 }}>
+      <h4 style={{ fontSize: 12, color: c.accent, marginBottom: 10 }}>
         {title}
       </h4>
 
-      <ul style={{ color: c.sub, fontSize: 15, lineHeight: 1.9 }}>
+      <ul style={{ color: c.sub, lineHeight: 1.8 }}>
         {items.map((i: string) => (
           <li key={i}>{i}</li>
         ))}
@@ -221,47 +259,22 @@ function Side({ title, items, accent, c }: any) {
   );
 }
 
-function MetricGrid({ c }: any) {
-  const data = [
-    ["LATAM", "Operational Coverage"],
-    ["100%", "Delegates Digital"],
-    ["0", "Legacy Cost"],
-  ];
-
-  return (
-    <div style={{
-      display:"grid",
-      gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",
-      gap:25
-    }}>
-      {data.map((m)=>(
-        <div key={m[1]} style={{
-          background:c.card,
-          border:`1px solid ${c.border}`,
-          borderRadius:18,
-          padding:30
-        }}>
-          <h2 style={{color:c.text,fontSize:30}}>{m[0]}</h2>
-          <span style={{color:c.sub,fontSize:14}}>{m[1]}</span>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 function Card({ title, children, c }: any) {
   return (
-    <div style={{
-      background:c.card,
-      border:`1px solid ${c.border}`,
-      borderRadius:20,
-      padding:45
-    }}>
-      <h2 style={{ fontSize:26, color:c.text, marginBottom:15 }}>
+    <div
+      style={{
+        background: c.card,
+        border: `1px solid ${c.border}`,
+        borderRadius: 20,
+        padding: 40,
+        minWidth: 0
+      }}
+    >
+      <h2 style={{ color: c.text, marginBottom: 15 }}>
         {title}
       </h2>
 
-      <div style={{ color:c.sub, lineHeight:1.9, fontSize:16 }}>
+      <div style={{ color: c.sub, lineHeight: 1.8 }}>
         {children}
       </div>
     </div>

@@ -16,56 +16,64 @@ export default function CaseIPO({ goBack }: Props) {
     en: {
       back: "Back to Projects",
       tag: "Information Security Governance",
-      title: "IPO — Centralized Checklist Management Platform",
+      title: "IPO Governance & Security Compliance Platform",
       desc:
-        "Enterprise application designed to standardize and centralize the annual Information Security checklist process for IPOs and pIPOs globally. Replaces fragmented Word-based workflows with a structured, scalable and trackable governance platform.",
-      arch: "Platform Architecture",
-      flows: "Automation & Governance",
-      ux: "User Experience Design",
-      impact: "Business Impact"
+        "Enterprise governance platform created to centralize and standardize annual Information Security checklist operations for IPOs and pIPOs globally. The solution replaced fragmented Word-based processes with a structured operational ecosystem focused on governance, compliance visibility, auditability and scalable execution across regions.",
+
+      video: "Platform Walkthrough",
+      arch: "Architecture",
+      automation: "My Role",
+      impact: "Impact",
+      integration: "Governance Workflow"
     },
+
     pt: {
       back: "Voltar aos Projetos",
       tag: "Governança de Segurança da Informação",
-      title: "IPO — Plataforma Centralizada de Gestão de Checklists",
+      title: "Plataforma de Governança e Compliance para IPOs",
       desc:
-        "Aplicação enterprise desenvolvida para padronizar e centralizar o processo anual de checklist de Segurança da Informação para IPOs e pIPOs globalmente. Substitui fluxos fragmentados em Word por uma plataforma estruturada, escalável e rastreável.",
-      arch: "Arquitetura da Plataforma",
-      flows: "Automação & Governança",
-      ux: "Experiência do Usuário",
-      impact: "Impacto no Negócio"
+        "Plataforma enterprise criada para centralizar e padronizar as operações anuais de checklist de Segurança da Informação para IPOs e pIPOs globalmente. A solução substituiu processos fragmentados em Word por um ecossistema operacional estruturado focado em governança, visibilidade de compliance, rastreabilidade e execução escalável entre regiões.",
+
+      video: "Demonstração da Plataforma",
+      arch: "Arquitetura",
+      automation: "Minha Atuação",
+      impact: "Impacto",
+      integration: "Fluxo de Governança"
     }
   };
 
   const tx = t[lang];
 
-  const accent = "#7C3AED";
-  const accentSoft = "#C4B5FD";
-
   const c = {
-    bg: dark
-      ? "radial-gradient(circle at 20% 10%, #120A2A 0%, #020617 60%)"
-      : "#F6F3FF",
-    card: dark ? "#0F1625" : "#FFFFFF",
-    border: dark ? "#1F2A44" : "#E6EAF2",
+    bg: dark ? "#020617" : "#F5F7FB",
+    card: dark ? "#0F172A" : "#FFFFFF",
+    border: dark ? "#1E293B" : "#E6EAF2",
     text: dark ? "#E8ECF8" : "#0F172A",
-    sub: dark ? "#9AA6C4" : "#64748B"
+    sub: dark ? "#94A3B8" : "#64748B",
+    accent: "#3B82F6"
   };
 
   return (
     <>
-      <section style={{ background: c.bg, padding: "120px 20px" }}>
+      <section
+        style={{
+          background: c.bg,
+          padding: "120px 20px",
+          overflowX: "hidden"
+        }}
+      >
         <div style={{ maxWidth: 1280, margin: "auto" }}>
 
+          {/* BACK */}
           <button
             onClick={goBack}
             style={{
               background: "none",
               border: "none",
-              color: accent,
+              color: c.accent,
               fontWeight: 600,
               cursor: "pointer",
-              marginBottom: 50
+              marginBottom: 40
             }}
           >
             ← {tx.back}
@@ -78,62 +86,74 @@ export default function CaseIPO({ goBack }: Props) {
               border: `1px solid ${c.border}`,
               borderRadius: 20,
               padding: 60,
-              marginBottom: 60,
-              position: "relative",
-              overflow: "hidden"
+              marginBottom: 60
             }}
           >
-            <div
-              style={{
-                position: "absolute",
-                width: 420,
-                height: 420,
-                background: accent,
-                filter: "blur(160px)",
-                opacity: 0.18,
-                left: -120,
-                top: -140
-              }}
-            />
-
-            <span
-              style={{
-                color: accent,
-                fontWeight: 700,
-                fontSize: 12,
-                letterSpacing: 3
-              }}
-            >
+            <span style={{ color: c.accent, fontWeight: 700, fontSize: 12 }}>
               {tx.tag.toUpperCase()}
             </span>
 
-            <h1
-              style={{
-                fontSize: 48,
-                marginTop: 15,
-                marginBottom: 25,
-                color: c.text,
-                maxWidth: 900,
-                lineHeight: 1.1
-              }}
-            >
+            <h1 style={{ fontSize: 48, margin: "20px 0", color: c.text }}>
               {tx.title}
             </h1>
 
             <p
               style={{
                 fontSize: 18,
-                maxWidth: 820,
-                lineHeight: 1.9,
-                color: c.sub
+                color: c.sub,
+                maxWidth: 900,
+                lineHeight: 1.8
               }}
             >
               {tx.desc}
             </p>
           </div>
 
+          {/* VIDEO */}
+          <div
+            style={{
+              background: c.card,
+              border: `1px solid ${c.border}`,
+              borderRadius: 20,
+              padding: 30,
+              marginBottom: 60
+            }}
+          >
+            <h2 style={{ color: c.text, marginBottom: 20 }}>
+              {tx.video}
+            </h2>
+
+            <div
+              style={{
+                width: "100%",
+                height: 420,
+                borderRadius: 16,
+                overflow: "hidden"
+              }}
+            >
+              <video
+                src="/videos/ipoman.mp4"
+                controls
+                autoPlay
+                muted
+                loop
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover"
+                }}
+              />
+            </div>
+          </div>
+
           {/* GRID */}
-          <div style={{ display: "grid", gridTemplateColumns: "360px 1fr", gap: 50 }}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "minmax(0,360px) minmax(0,1fr)",
+              gap: 40
+            }}
+          >
 
             {/* SIDEBAR */}
             <aside
@@ -143,50 +163,72 @@ export default function CaseIPO({ goBack }: Props) {
                 borderRadius: 20,
                 padding: 30,
                 height: "fit-content",
-                position: "sticky",
-                top: 120
+                minWidth: 0
               }}
             >
-              <Side title="STACK" items={["Power Apps", "Dataverse", "Power Automate", "SharePoint"]} accent={accent} c={c} />
-              <Side title="SCALE" items={["Global IPO Coverage", "Regional Governance", "Standardized Compliance"]} accent={accent} c={c} />
-              <Side title="MODULES" items={["Checklist Builder", "Progress Tracking", "Visibility Dashboard"]} accent={accent} c={c} />
+              <Side
+                title="CONTEXT"
+                items={[
+                  "Global Security Governance",
+                  "Annual Compliance Operations",
+                  "Centralized Checklist Control",
+                  "Enterprise Audit Visibility"
+                ]}
+                c={c}
+              />
             </aside>
 
             {/* MAIN */}
-            <main style={{ display: "flex", flexDirection: "column", gap: 40 }}>
-
-              <MetricGrid accent={accent} c={c} />
+            <main
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 40,
+                minWidth: 0
+              }}
+            >
 
               <Card title={tx.arch} c={c}>
-                Plataforma construída em Power Apps Canvas com Dataverse como camada central de dados.
-                Estrutura permite criação padronizada de checklists anuais, rastreamento de progresso por IPO
-                e visibilidade consolidada para gestores regionais e globais.
+                {lang === "pt"
+                  ? "A arquitetura foi construída em Power Platform utilizando Power Apps para operação centralizada, Dataverse como camada estruturada de dados e Power Automate para automações de governança e rastreabilidade. A solução suporta execução padronizada dos ciclos anuais de compliance entre diferentes regiões e unidades."
+                  : "The architecture was built on Power Platform using Power Apps for centralized operations, Dataverse as the structured data layer and Power Automate for governance and traceability automations. The solution supports standardized execution of annual compliance cycles across regions and business units."}
               </Card>
 
-              <Card title={tx.flows} c={c}>
-                Automação garante consistência do processo:
-                <ul>
-                  <li>Criação automática de checklists por ciclo anual</li>
-                  <li>Controle de status e progresso em tempo real</li>
-                  <li>Padronização global de perguntas e critérios</li>
-                  <li>Visibilidade centralizada para times de governança</li>
-                </ul>
+              <Card title={tx.automation} c={c}>
+                {lang === "pt"
+                  ? "Responsável pela evolução da plataforma, automação de fluxos operacionais, padronização de processos globais e melhoria da experiência de uso para times envolvidos em operações de governança e compliance."
+                  : "Responsible for platform evolution, operational workflow automation, standardization of global processes and improving usability for governance and compliance operational teams."}
               </Card>
 
-              <Card title={tx.ux} c={c}>
-                Interface simples focada em adoção rápida.
-                Usuários conseguem criar, preencher e acompanhar checklists sem necessidade de treinamento técnico.
-                Estrutura visual reduz complexidade percebida e melhora compliance.
+              <Card title={tx.integration} c={c}>
+                <p style={{ marginBottom: 15 }}>
+                  {lang === "pt"
+                    ? "O fluxo operacional centraliza a criação, execução e rastreamento dos checklists anuais de Segurança da Informação."
+                    : "The operational workflow centralizes creation, execution and tracking of annual Information Security checklists."}
+                </p>
+
+                <pre
+                  style={{
+                    background: "#020617",
+                    color: "#E5E7EB",
+                    padding: 20,
+                    borderRadius: 12,
+                    fontSize: 12,
+                    overflowX: "auto"
+                  }}
+                >
+{`CREATE Annual Checklist
+→ Assign Business Unit
+→ Execute Security Review
+→ Track Progress & Status
+→ Generate Governance Visibility`}
+                </pre>
               </Card>
 
               <Card title={tx.impact} c={c}>
-                Impactos diretos:
-                <ul>
-                  <li>Eliminação de checklists manuais em Word</li>
-                  <li>Governança padronizada globalmente</li>
-                  <li>Maior transparência de progresso e riscos</li>
-                  <li>Redução significativa de esforço operacional</li>
-                </ul>
+                {lang === "pt"
+                  ? "A plataforma eliminou processos manuais descentralizados em Word, aumentou a padronização global dos ciclos de compliance e trouxe maior visibilidade operacional para times de governança e Segurança da Informação."
+                  : "The platform eliminated decentralized Word-based manual processes, increased global compliance standardization and improved operational visibility for governance and Information Security teams."}
               </Card>
 
             </main>
@@ -201,19 +243,14 @@ export default function CaseIPO({ goBack }: Props) {
 
 /* COMPONENTS */
 
-function Side({ title, items, accent, c }: any) {
+function Side({ title, items, c }: any) {
   return (
-    <div style={{ marginBottom: 28 }}>
-      <h4 style={{
-        fontSize: 11,
-        letterSpacing: 3,
-        color: accent,
-        marginBottom: 10
-      }}>
+    <div style={{ marginBottom: 30 }}>
+      <h4 style={{ fontSize: 12, color: c.accent, marginBottom: 10 }}>
         {title}
       </h4>
 
-      <ul style={{ color: c.sub, fontSize: 15, lineHeight: 1.9 }}>
+      <ul style={{ color: c.sub, lineHeight: 1.8 }}>
         {items.map((i: string) => (
           <li key={i}>{i}</li>
         ))}
@@ -222,47 +259,22 @@ function Side({ title, items, accent, c }: any) {
   );
 }
 
-function MetricGrid({ accent, c }: any) {
-  const data = [
-    ["37", "Standard Questions"],
-    ["Global", "IPO Coverage"],
-    ["100%", "Process Centralized"],
-  ];
-
-  return (
-    <div style={{
-      display:"grid",
-      gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",
-      gap:25
-    }}>
-      {data.map((m)=>(
-        <div key={m[1]} style={{
-          background:c.card,
-          border:`1px solid ${c.border}`,
-          borderRadius:18,
-          padding:30
-        }}>
-          <h2 style={{color:c.text,fontSize:30}}>{m[0]}</h2>
-          <span style={{color:c.sub,fontSize:14}}>{m[1]}</span>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 function Card({ title, children, c }: any) {
   return (
-    <div style={{
-      background:c.card,
-      border:`1px solid ${c.border}`,
-      borderRadius:20,
-      padding:45
-    }}>
-      <h2 style={{ fontSize:26, color:c.text, marginBottom:15 }}>
+    <div
+      style={{
+        background: c.card,
+        border: `1px solid ${c.border}`,
+        borderRadius: 20,
+        padding: 40,
+        minWidth: 0
+      }}
+    >
+      <h2 style={{ color: c.text, marginBottom: 15 }}>
         {title}
       </h2>
 
-      <div style={{ color:c.sub, lineHeight:1.9, fontSize:16 }}>
+      <div style={{ color: c.sub, lineHeight: 1.8 }}>
         {children}
       </div>
     </div>

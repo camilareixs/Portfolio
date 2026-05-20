@@ -74,7 +74,7 @@ export default function MyProjects({ openCase }: Props) {
     {
       id: "ipo",
       title: "IPO Management App",
-      cover: "/public/ipoman.png",
+      cover: "/public/ipo.png",
       users: "Regional Teams",
       region: "LATAM",
       domain: { pt: "Compliance", en: "Compliance" },
@@ -87,7 +87,7 @@ export default function MyProjects({ openCase }: Props) {
     {
       id: "controle-de-delegados",
       title: "Controle de Delegados",
-      cover: "https://images.unsplash.com/photo-1581091012184-7ee295f4874b?q=80&w=1400",
+      cover: "/public/controle.png",
       users: "HR Teams",
       region: "LATAM",
       domain: { pt: "RH", en: "HR" },
