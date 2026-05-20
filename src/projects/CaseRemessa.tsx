@@ -16,43 +16,53 @@ export default function CaseRemessa({ goBack }: Props) {
     en: {
       back: "Back to Projects",
       tag: "Financial Data Automation Platform",
-      title: "Automated Remittance Processing & Reporting Ecosystem",
-      desc: "Enterprise-grade automation platform designed to orchestrate ingestion, cleansing, transformation and distribution of financial remittance datasets. Built on Microsoft Power Platform enabling reliable high-volume processing and structured operational visibility.",
-      arch: "Platform Architecture",
-      automation: "Automation Engineering Scope",
-      pipeline: "Remittance Processing Pipeline",
-      impact: "Business Impact"
+      title: "Automated Financial Remittance Processing Ecosystem",
+      desc: "Enterprise-grade automation platform responsible for orchestrating the complete remittance processing lifecycle, including ingestion, normalization, validation, transformation and controlled distribution of financial datasets across operational and finance teams with reliability, traceability and scalable execution.",
+
+      video: "Platform Walkthrough",
+      arch: "Architecture",
+      automation: "My Role",
+      impact: "Impact",
+      integration: "Remittance Processing Pipeline"
     },
+
     pt: {
       back: "Voltar aos Projetos",
-      tag: "Plataforma de Automação de Dados Financeiros",
+      tag: "Plataforma de Automação Financeira",
       title: "Ecossistema Automatizado de Processamento de Remessas",
-      desc: "Plataforma corporativa de automação responsável por orquestrar ingestão, limpeza, transformação e distribuição de datasets financeiros de remessa. Construída em Power Platform permitindo processamento confiável em alto volume e visibilidade operacional estruturada.",
-      arch: "Arquitetura da Plataforma",
-      automation: "Escopo de Engenharia de Automação",
-      pipeline: "Pipeline de Processamento de Remessas",
-      impact: "Impacto no Negócio"
+      desc: "Plataforma corporativa de automação responsável por orquestrar todo o ciclo de processamento de remessas financeiras, incluindo ingestão, normalização, validação, transformação e distribuição controlada de datasets financeiros entre áreas operacionais e times financeiros com confiabilidade, rastreabilidade e execução escalável.",
+
+      video: "Demonstração da Plataforma",
+      arch: "Arquitetura",
+      automation: "Minha Atuação",
+      impact: "Impacto",
+      integration: "Pipeline de Processamento de Remessas"
     }
   };
 
   const tx = t[lang];
 
   const c = {
-    bg: dark ? "radial-gradient(circle at 80% 20%, #0F172A 0%, #020617 60%)" : "#F5F7FB",
-    card: dark ? "#0F1625" : "#FFFFFF",
-    border: dark ? "#1F2A44" : "#E6EAF2",
+    bg: dark ? "#020617" : "#F5F7FB",
+    card: dark ? "#0F172A" : "#FFFFFF",
+    border: dark ? "#1E293B" : "#E6EAF2",
     text: dark ? "#E8ECF8" : "#0F172A",
-    sub: dark ? "#9AA6C4" : "#64748B",
-
-    accent: "#D97706",
-    accentSoft: "#F59E0B"
+    sub: dark ? "#94A3B8" : "#64748B",
+    accent: "#3B82F6"
   };
 
   return (
     <>
-      <section style={{ background: c.bg, padding: "120px 20px" }}>
+      <section
+        style={{
+          background: c.bg,
+          padding: "120px 20px",
+          overflowX: "hidden"
+        }}
+      >
         <div style={{ maxWidth: 1280, margin: "auto" }}>
-          
+
+          {/* BACK */}
           <button
             onClick={goBack}
             style={{
@@ -61,7 +71,7 @@ export default function CaseRemessa({ goBack }: Props) {
               color: c.accent,
               fontWeight: 600,
               cursor: "pointer",
-              marginBottom: 50
+              marginBottom: 40
             }}
           >
             ← {tx.back}
@@ -74,107 +84,142 @@ export default function CaseRemessa({ goBack }: Props) {
               border: `1px solid ${c.border}`,
               borderRadius: 20,
               padding: 60,
-              marginBottom: 60,
-              position: "relative",
-              overflow: "hidden"
+              marginBottom: 60
             }}
           >
-            <div
-              style={{
-                position: "absolute",
-                width: 420,
-                height: 420,
-                background: c.accent,
-                filter: "blur(160px)",
-                opacity: 0.18,
-                left: -120,
-                top: -140
-              }}
-            />
-
-            <span style={{ color: c.accent, fontWeight: 700, fontSize: 12, letterSpacing: 3 }}>
+            <span style={{ color: c.accent, fontWeight: 700, fontSize: 12 }}>
               {tx.tag.toUpperCase()}
             </span>
 
-            <h1 style={{ fontSize: 48, marginTop: 15, marginBottom: 25, color: c.text, maxWidth: 900, lineHeight: 1.1 }}>
+            <h1 style={{ fontSize: 48, margin: "20px 0", color: c.text }}>
               {tx.title}
             </h1>
 
-            <p style={{ fontSize: 18, maxWidth: 820, lineHeight: 1.9, color: c.sub }}>
+            <p style={{ fontSize: 18, color: c.sub, maxWidth: 900, lineHeight: 1.8 }}>
               {tx.desc}
             </p>
           </div>
 
-          {/* GRID */}
-          <div style={{ display: "grid", gridTemplateColumns: "360px 1fr", gap: 50 }}>
-            
-            {/* SIDEBAR */}
-            <aside style={{
+          {/* VIDEO */}
+          <div
+            style={{
               background: c.card,
               border: `1px solid ${c.border}`,
               borderRadius: 20,
               padding: 30,
-              height: "fit-content",
-              position: "sticky",
-              top: 120
-            }}>
-              <div style={{
-                height: 200,
-                borderRadius: 16,
-                background: "linear-gradient(135deg,#D97706 0%, #F59E0B 100%)",
-                opacity: 0.15,
-                marginBottom: 30
-              }} />
+              marginBottom: 60
+            }}
+          >
+            <h2 style={{ color: c.text, marginBottom: 20 }}>
+              {tx.video}
+            </h2>
 
-              <Side title="STACK" items={["Power Apps", "SharePoint", "Power Automate", "Power BI Dataflow", "Excel / CSV"]} c={c} />
-              <Side title="SCALE" items={["Finance Operations", "Multi-File Processing", "Automated Reporting", "High Volume Runs"]} c={c} />
-              <Side title="MODULES" items={["File Ingestion", "Data Cleansing", "Transformation Engine", "Remittance Export"]} c={c} />
+            <div
+              style={{
+                width: "100%",
+                height: 420,
+                borderRadius: 16,
+                overflow: "hidden"
+              }}
+            >
+              <video
+                src="/videos/remessa.mp4"
+                controls
+                autoPlay
+                muted
+                loop
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover"
+                }}
+              />
+            </div>
+          </div>
+
+          {/* GRID */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "minmax(0,360px) minmax(0,1fr)",
+              gap: 40
+            }}
+          >
+
+            {/* SIDEBAR */}
+            <aside
+              style={{
+                background: c.card,
+                border: `1px solid ${c.border}`,
+                borderRadius: 20,
+                padding: 30,
+                height: "fit-content",
+                minWidth: 0
+              }}
+            >
+              <Side
+                title="CONTEXT"
+                items={[
+                  "Financial Remittance Operations",
+                  "Automated File Processing",
+                  "High-volume Financial Datasets",
+                  "Enterprise Reporting Pipelines"
+                ]}
+                c={c}
+              />
             </aside>
 
             {/* MAIN */}
-            <main style={{ display: "flex", flexDirection: "column", gap: 40 }}>
-              
-              <MetricGrid c={c} />
+            <main
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 40,
+                minWidth: 0
+              }}
+            >
 
               <Card title={tx.arch} c={c}>
-                {lang === "en"
-                  ? "The solution was architected as a centralized data processing layer combining SharePoint document ingestion with Power Platform automation and Dataflow transformation pipelines. Structured datasets are normalized and validated before report generation ensuring financial integrity and operational reliability."
-                  : "A solução foi arquitetada como uma camada centralizada de processamento de dados combinando ingestão de documentos via SharePoint com automações em Power Platform e pipelines de transformação via Dataflow. Os datasets estruturados são normalizados e validados antes da geração de relatórios garantindo integridade financeira e confiabilidade operacional."}
+                {lang === "pt"
+                  ? "A arquitetura foi desenhada para suportar processamento financeiro em alto volume utilizando SharePoint para ingestão documental, Power Automate para orquestração operacional e Dataflows para transformação e consolidação de datasets financeiros antes da geração de relatórios e arquivos finais."
+                  : "The architecture was designed to support high-volume financial processing using SharePoint for document ingestion, Power Automate for operational orchestration and Dataflows for transformation and consolidation of financial datasets before final reporting and export generation."}
               </Card>
 
               <Card title={tx.automation} c={c}>
-                {lang === "en"
-                  ? "Engineering ownership included design of ingestion orchestration flows, legacy spreadsheet normalization logic, execution monitoring mechanisms and automated distribution models. Performance optimization initiatives significantly reduced end-to-end execution time for high-volume remittance cycles."
-                  : "A atuação técnica envolveu desenho de fluxos de orquestração de ingestão, lógica de normalização de planilhas legadas, mecanismos de monitoramento de execução e modelos automatizados de distribuição de relatórios. Iniciativas de otimização reduziram significativamente o tempo total de processamento em ciclos de alto volume."}
+                {lang === "pt"
+                  ? "Responsável pela engenharia das automações de remessa, incluindo normalização de arquivos legados, validações financeiras, controle de execução, tratamento de inconsistências e otimização de pipelines críticos de processamento."
+                  : "Responsible for remittance automation engineering, including legacy file normalization, financial validations, execution control, inconsistency handling and optimization of critical processing pipelines."}
               </Card>
 
-              <Card title={tx.pipeline} c={c}>
-                <p style={{ marginBottom: 20 }}>
-                  {lang === "en"
-                    ? "Core automation pipeline responsible for transforming raw financial files into consolidated remittance outputs."
-                    : "Pipeline central responsável por transformar arquivos financeiros brutos em relatórios consolidados de remessa."}
+              <Card title={tx.integration} c={c}>
+                <p style={{ marginBottom: 15 }}>
+                  {lang === "pt"
+                    ? "O pipeline automatizado processa arquivos financeiros desde a ingestão inicial até a consolidação e distribuição final dos relatórios operacionais."
+                    : "The automated pipeline processes financial files from initial ingestion to final consolidation and operational report distribution."}
                 </p>
 
-<pre style={{
-background:"#020617",
-color:"#E5E7EB",
-padding:22,
-borderRadius:16,
-fontSize:13
-}}>
+                <pre
+                  style={{
+                    background: "#020617",
+                    color: "#E5E7EB",
+                    padding: 20,
+                    borderRadius: 12,
+                    fontSize: 12,
+                    overflowX: "auto"
+                  }}
+                >
 {`UPLOAD → Validate Files
-→ Clean Legacy Tables
+→ Normalize Legacy Tables
 → Execute Dataflow Transformation
-→ Generate Consolidated CSV
-→ Distribute Finance Report`}
-</pre>
-
+→ Generate Consolidated Output
+→ Distribute Financial Reports`}
+                </pre>
               </Card>
 
               <Card title={tx.impact} c={c}>
-                {lang === "en"
-                  ? "The platform eliminated manual spreadsheet reconciliation cycles reducing processing time from multiple days to minutes. Finance teams gained predictable execution windows, improved data accuracy and structured monitoring capabilities enabling scalable remittance operations."
-                  : "A plataforma eliminou ciclos manuais de reconciliação em planilhas reduzindo o tempo de processamento de vários dias para minutos. Os times financeiros passaram a ter janelas previsíveis de execução, maior acurácia de dados e capacidade estruturada de monitoramento permitindo escalar operações de remessa."}
+                {lang === "pt"
+                  ? "A automação eliminou ciclos manuais de consolidação financeira, reduziu drasticamente o tempo de processamento operacional e aumentou a confiabilidade dos dados utilizados pelos times financeiros e operacionais."
+                  : "The automation eliminated manual financial consolidation cycles, drastically reduced operational processing time and improved reliability of datasets consumed by finance and operational teams."}
               </Card>
 
             </main>
@@ -191,41 +236,36 @@ fontSize:13
 
 function Side({ title, items, c }: any) {
   return (
-    <div style={{ marginBottom: 28 }}>
-      <h4 style={{ fontSize: 11, letterSpacing: 3, color: c.accent, marginBottom: 10 }}>
+    <div style={{ marginBottom: 30 }}>
+      <h4 style={{ fontSize: 12, color: c.accent, marginBottom: 10 }}>
         {title}
       </h4>
-      <ul style={{ color: c.sub, fontSize: 15, lineHeight: 1.9 }}>
-        {items.map((i: string) => <li key={i}>{i}</li>)}
+
+      <ul style={{ color: c.sub, lineHeight: 1.8 }}>
+        {items.map((i: string) => (
+          <li key={i}>{i}</li>
+        ))}
       </ul>
-    </div>
-  );
-}
-
-function MetricGrid({ c }: any) {
-  const data = [
-    ["10 min", "Processing Window"],
-    ["5+", "Financial Sources"],
-    ["100%", "Automation Coverage"],
-  ];
-
-  return (
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 25 }}>
-      {data.map((m) => (
-        <div key={m[1]} style={{ background: c.card, border: `1px solid ${c.border}`, borderRadius: 18, padding: 30 }}>
-          <h2 style={{ color: c.text, fontSize: 30 }}>{m[0]}</h2>
-          <span style={{ color: c.sub, fontSize: 14 }}>{m[1]}</span>
-        </div>
-      ))}
     </div>
   );
 }
 
 function Card({ title, children, c }: any) {
   return (
-    <div style={{ background: c.card, border: `1px solid ${c.border}`, borderRadius: 20, padding: 45 }}>
-      <h2 style={{ fontSize: 26, color: c.text, marginBottom: 15 }}>{title}</h2>
-      <div style={{ color: c.sub, lineHeight: 1.9, fontSize: 16 }}>
+    <div
+      style={{
+        background: c.card,
+        border: `1px solid ${c.border}`,
+        borderRadius: 20,
+        padding: 40,
+        minWidth: 0
+      }}
+    >
+      <h2 style={{ color: c.text, marginBottom: 15 }}>
+        {title}
+      </h2>
+
+      <div style={{ color: c.sub, lineHeight: 1.8 }}>
         {children}
       </div>
     </div>

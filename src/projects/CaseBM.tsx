@@ -16,26 +16,26 @@ export default function CaseBM({ goBack }: Props) {
     en: {
       back: "Back to Projects",
       tag: "Digital Operations Platform",
-      title: "Workflow Automation & Service Management Ecosystem",
-      desc: "End-to-end operational platform built on Microsoft Power Platform designed to digitize service requests, automate multi-team workflows and provide structured performance visibility across business units.",
+      title: "Payment Cell Operations & Workflow Automation Ecosystem",
+      desc: "Enterprise-grade operational platform built on Microsoft Power Platform responsible for managing the internal payment cell lifecycle, including request intake, validation, approval flows, and controlled execution of financial operations across business units with traceability and governance.",
 
       video: "Platform Walkthrough",
-      arch: "Operational Architecture",
-      automation: "Automation Engineering Scope",
-      impact: "Operational Impact",
-      integration: "Service Lifecycle Logic"
+      arch: "Architecture",
+      automation: "My Role",
+      impact: "Impact",
+      integration: "Payment Lifecycle Flow"
     },
     pt: {
       back: "Voltar aos Projetos",
       tag: "Plataforma de Operações Digitais",
-      title: "Ecossistema de Automação de Fluxos e Gestão de Serviços",
-      desc: "Plataforma operacional completa construída em Power Platform para digitalizar solicitações de serviço, automatizar fluxos entre múltiplos times e fornecer visibilidade estruturada de performance operacional.",
+      title: "Ecossistema de Automação e Gestão da Célula de Pagamentos",
+      desc: "Plataforma operacional de nível enterprise construída em Power Platform responsável pela gestão do ciclo completo da célula de pagamentos interna, incluindo abertura de solicitações, validação, fluxos de aprovação e execução controlada de operações financeiras entre áreas com rastreabilidade e governança.",
 
       video: "Demonstração da Plataforma",
-      arch: "Arquitetura Operacional",
-      automation: "Escopo de Engenharia de Automação",
-      impact: "Impacto Operacional",
-      integration: "Fluxo de Ciclo de Vida de Solicitações"
+      arch: "Arquitetura",
+      automation: "Minha Atuação",
+      impact: "Impacto",
+      integration: "Fluxo do Ciclo de Pagamentos"
     }
   };
 
@@ -54,7 +54,7 @@ export default function CaseBM({ goBack }: Props) {
     <>
       <section style={{ background: c.bg, padding: "120px 20px", overflowX: "hidden" }}>
         <div style={{ maxWidth: 1280, margin: "auto" }}>
-          
+
           {/* BACK */}
           <button
             onClick={goBack}
@@ -70,7 +70,7 @@ export default function CaseBM({ goBack }: Props) {
             ← {tx.back}
           </button>
 
-          {/* HERO (igual ACTUS) */}
+          {/* HERO */}
           <div
             style={{
               background: c.card,
@@ -93,9 +93,52 @@ export default function CaseBM({ goBack }: Props) {
             </p>
           </div>
 
-          {/* GRID (igual ACTUS) */}
-          <div style={{ display: "grid", gridTemplateColumns: "minmax(0,360px) minmax(0,1fr)", gap: 40 }}>
-            
+          {/* VIDEO */}
+          <div
+            style={{
+              background: c.card,
+              border: `1px solid ${c.border}`,
+              borderRadius: 20,
+              padding: 30,
+              marginBottom: 60
+            }}
+          >
+            <h2 style={{ color: c.text, marginBottom: 20 }}>
+              {tx.video}
+            </h2>
+
+            <div
+              style={{
+                width: "100%",
+                height: 420,
+                borderRadius: 16,
+                overflow: "hidden"
+              }}
+            >
+              <video
+                src="/videos/BMop.mp4"
+                controls
+                autoPlay
+                muted
+                loop
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover"
+                }}
+              />
+            </div>
+          </div>
+
+          {/* GRID */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "minmax(0,360px) minmax(0,1fr)",
+              gap: 40
+            }}
+          >
+
             {/* SIDEBAR */}
             <aside
               style={{
@@ -110,28 +153,35 @@ export default function CaseBM({ goBack }: Props) {
               <Side
                 title="CONTEXT"
                 items={[
-                  "Digital Operations Platform",
+                  "Payment Operations Layer",
                   "1200+ Users",
-                  "Multi-team workflows",
-                  "Power Platform Ecosystem"
+                  "Financial Workflow Control",
+                  "Enterprise Governance System"
                 ]}
                 c={c}
               />
             </aside>
 
             {/* MAIN */}
-            <main style={{ display: "flex", flexDirection: "column", gap: 40, minWidth: 0 }}>
+            <main
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 40,
+                minWidth: 0
+              }}
+            >
 
               <Card title={tx.arch} c={c}>
                 {lang === "pt"
-                  ? "A arquitetura foi construída em Power Platform utilizando modelo híbrido com Dataverse como base de dados, Power Apps para interface e Power Automate para orquestração de fluxos e regras de negócio."
-                  : "The architecture was built on Power Platform using a hybrid model with Dataverse as the data backbone, Power Apps for UI and Power Automate for workflow orchestration and business rules."}
+                  ? "A arquitetura foi desenhada para suportar um fluxo financeiro crítico, utilizando Power Platform com Dataverse como base central, Power Apps para operação e Power Automate para orquestração de aprovações, validações e execução controlada de pagamentos entre áreas."
+                  : "The architecture was designed to support a critical financial workflow using Power Platform with Dataverse as the core data layer, Power Apps for operations and Power Automate orchestrating approvals, validations and controlled payment execution across business units."}
               </Card>
 
               <Card title={tx.automation} c={c}>
                 {lang === "pt"
-                  ? "Responsável pela evolução de automações existentes, otimização de fluxos, manutenção de estabilidade em produção e melhoria contínua de regras de roteamento."
-                  : "Responsible for evolving existing automations, optimizing workflows, maintaining production stability and improving routing rules continuously."}
+                  ? "Responsável pela engenharia de automações de pagamento, incluindo regras de validação, roteamento de aprovações, tratamento de exceções e manutenção de estabilidade em ambiente produtivo crítico."
+                  : "Responsible for payment automation engineering, including validation rules, approval routing, exception handling and maintaining stability in a critical production environment."}
               </Card>
 
               <Card title={tx.integration} c={c}>
@@ -139,63 +189,30 @@ export default function CaseBM({ goBack }: Props) {
                   style={{
                     background: "#020617",
                     color: "#E5E7EB",
-                    padding: 22,
-                    borderRadius: 16,
-                    fontSize: 13
+                    padding: 20,
+                    borderRadius: 12,
+                    fontSize: 12,
+                    overflowX: "auto"
                   }}
                 >
-{`IF Priority = High
- → Assign Queue = Level 2
- → Notify Manager
- → Start SLA Timer
+{`IF Payment Request = Submitted
+ → Validate Data
+ → Route to Approver
 
-ELSE
- → Assign Queue = Level 1
- → Standard SLA`}
+IF Approved
+ → Execute Payment
+ → Log Transaction
+
+IF Rejected
+ → Notify Requester`}
                 </pre>
               </Card>
 
               <Card title={tx.impact} c={c}>
                 {lang === "pt"
-                  ? "Redução de processos manuais, aumento de visibilidade operacional e melhoria na governança de solicitações."
-                  : "Reduction of manual processes, improved operational visibility and stronger request governance."}
+                  ? "Redução de risco operacional no fluxo de pagamentos, eliminação de controle manual via planilhas e aumento de governança e rastreabilidade nas operações financeiras."
+                  : "Reduced operational risk in payment workflows, elimination of manual spreadsheet tracking and improved governance and traceability in financial operations."}
               </Card>
-
-              {/* VIDEO PADRONIZADO */}
-              <div
-                style={{
-                  background: c.card,
-                  border: `1px solid ${c.border}`,
-                  borderRadius: 20,
-                  padding: 30
-                }}
-              >
-                <h2 style={{ color: c.text, marginBottom: 20 }}>
-                  {tx.video}
-                </h2>
-
-                <div
-                  style={{
-                    width: "100%",
-                    height: 420,
-                    borderRadius: 16,
-                    overflow: "hidden"
-                  }}
-                >
-                  <video
-                    src="/videos/BMop.mp4"
-                    controls
-                    autoPlay
-                    muted
-                    loop
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover"
-                    }}
-                  />
-                </div>
-              </div>
 
             </main>
           </div>
@@ -207,7 +224,7 @@ ELSE
   );
 }
 
-/* COMPONENTS (IGUAIS AO ACTUS) */
+/* COMPONENTS */
 
 function Side({ title, items, c }: any) {
   return (

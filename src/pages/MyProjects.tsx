@@ -74,7 +74,7 @@ export default function MyProjects({ openCase }: Props) {
     {
       id: "ipo",
       title: "IPO Management App",
-      cover: "https://images.unsplash.com/photo-1564866657311-196d1e9e16f8?q=80&w=1400",
+      cover: "/public/ipoman.png",
       users: "Regional Teams",
       region: "LATAM",
       domain: { pt: "Compliance", en: "Compliance" },
