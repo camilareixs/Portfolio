@@ -21,8 +21,8 @@ export default function Home({ goProjects }: Props) {
 
     desc:
       lang === "en"
-        ? "Delivering enterprise automation, scalable low-code solutions, and advanced Power Fx logic."
-        : "Entregando automação empresarial, soluções escaláveis em Low Code e lógica avançada do Power Fx.",
+        ? "Transforming complex operational workflows into scalable digital solutions through Power Platform, automation and enterprise integrations."
+        : "Transformando fluxos operacionais complexos em soluções digitais escaláveis através de Power Platform, automação e integrações corporativas.",
 
     viewProjects: lang === "en" ? "View Projects" : "Ver Projetos",
     downloadCV: lang === "en" ? "Download CV" : "Baixar CV",
@@ -87,17 +87,7 @@ export default function Home({ goProjects }: Props) {
                 {text.viewProjects}
               </button>
 
-              <a href="/cv.pdf" download>
-                <button
-                  style={{
-                    ...styles.ghostBtn,
-                    border: `2px solid ${primary}`,
-                    color: primary
-                  }}
-                >
-                  {text.downloadCV}
-                </button>
-              </a>
+              
             </div>
           </div>
 

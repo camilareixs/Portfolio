@@ -98,22 +98,9 @@ export default function MyProjects({ openCase }: Props) {
       }
     },
     {
-      id: "reconhecimento",
-      title: "HR Recognition Platform",
-      cover: "https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&w=1400",
-      users: "Employees",
-      region: "LATAM",
-      domain: { pt: "RH", en: "HR" },
-      tech: ["Power Apps", "Dataverse"],
-      shortDesc: {
-        pt: "Plataforma de reconhecimento com workflows.",
-        en: "Recognition platform with workflows."
-      }
-    },
-    {
       id: "cambio-importacao",
       title: "Import Exchange Request App",
-      cover: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1400",
+      cover: "/public/fluxopag.png",
       users: "Treasury",
       region: "LATAM",
       domain: { pt: "Financeiro", en: "Finance" },
@@ -124,22 +111,9 @@ export default function MyProjects({ openCase }: Props) {
       }
     },
     {
-      id: "invoice",
-      title: "Invoice Center",
-      cover: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1400",
-      users: "Accounts Payable",
-      region: "LATAM",
-      domain: { pt: "Financeiro", en: "Finance" },
-      tech: ["Power Apps", "Dataverse"],
-      shortDesc: {
-        pt: "Centralização de validação de faturas.",
-        en: "Centralized invoice validation."
-      }
-    },
-    {
       id: "measurement-report",
       title: "Measurement Report Automation Platform",
-      cover: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1400",
+      cover: "/public/measurement.png",
       users: "Finance LATAM",
       region: "LATAM",
       domain: { pt: "Financeiro", en: "Finance" },
@@ -152,7 +126,7 @@ export default function MyProjects({ openCase }: Props) {
     {
       id: "cd-portal",
       title: "CD Portal — Loyalty & Sales Platform",
-      cover: "https://images.unsplash.com/photo-1556745757-8d76bdb6984b?q=80&w=1400",
+      cover: "/public/camiduda.png",
       users: "Retail",
       region: "Brazil",
       domain: { pt: "Vendas", en: "Sales" },
