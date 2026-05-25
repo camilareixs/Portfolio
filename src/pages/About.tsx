@@ -13,30 +13,64 @@ export default function About() {
     "Power Apps": "#742774",
     "Power Automate": "#0066FF",
     "Dataverse": "#999999",
+    "SharePoint": "#0078D4",
 
+  
     "UiPath": "#FF6C37",
     "Pipefy": "#FF4A00",
-
+  
+  
     "React": "#61DAFB",
+    "TypeScript": "#3178C6",
     "JavaScript": "#F7DF1E",
     "HTML": "#E34F26",
     "CSS": "#1572B6",
-
+  
+    "SAP Integrations": "#0FAAFF",
+    "REST APIs": "#22C55E",
+    "XML": "#F97316",
+    "SQL": "#336791",
+    "Dataflow": "#A855F7",
+  
     "Python": "#3776AB"
   };
-
+  
   const stack = [
     {
       title: "Power Platform",
-      items: ["Power Apps","Power Automate","Dataverse"]
+      items: [
+        "Power Apps",
+        "Power Automate",
+        "Dataverse",
+        "SharePoint"
+      ]
     },
     {
-      title: "Automation",
-      items: ["UiPath","Pipefy"]
+      title: "Automation & Process",
+      items: [
+        "UiPath",
+        "Pipefy"
+      ]
     },
     {
       title: "Frontend",
-      items: ["React","JavaScript","HTML","CSS"]
+      items: [
+        "React",
+        "TypeScript",
+        "JavaScript",
+        "HTML",
+        "CSS"
+      ]
+    },
+    {
+      title: "Data & Integrations",
+      items: [
+        "SAP Integrations",
+        "REST APIs",
+        "XML",
+        "SQL",
+        "Dataflow"
+      ]
     },
     {
       title: "Backend",

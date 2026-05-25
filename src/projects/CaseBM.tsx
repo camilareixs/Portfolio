@@ -16,43 +16,46 @@ export default function CaseBM({ goBack }: Props) {
     en: {
       back: "Back to Projects",
       tag: "Digital Operations Platform",
-      title: "Workflow Automation & Service Management Ecosystem",
-      desc: "End-to-end operational platform built on Microsoft Power Platform designed to digitize service requests, automate multi-team workflows and provide structured performance visibility across business units.",
-      arch: "Operational Architecture",
-      automation: "Automation Engineering Scope",
-      lifecycle: "Service Request Lifecycle Flow",
-      impact: "Operational Impact"
+      title: "Payment Cell Operations & Workflow Automation Ecosystem",
+      desc: "Enterprise-grade operational platform built on Microsoft Power Platform responsible for managing the internal payment cell lifecycle, including request intake, validation, approval flows, and controlled execution of financial operations across business units with traceability and governance.",
+
+      video: "Platform Walkthrough",
+      arch: "Architecture",
+      automation: "My Role",
+      impact: "Impact",
+      integration: "Payment Lifecycle Flow"
     },
     pt: {
       back: "Voltar aos Projetos",
       tag: "Plataforma de Operações Digitais",
-      title: "Ecossistema de Automação de Fluxos e Gestão de Serviços",
-      desc: "Plataforma operacional completa construída em Power Platform para digitalizar solicitações de serviço, automatizar fluxos entre múltiplos times e fornecer visibilidade estruturada de performance operacional.",
-      arch: "Arquitetura Operacional",
-      automation: "Escopo de Engenharia de Automação",
-      lifecycle: "Fluxo de Ciclo de Vida de Solicitações",
-      impact: "Impacto Operacional"
+      title: "Ecossistema de Automação e Gestão da Célula de Pagamentos",
+      desc: "Plataforma operacional de nível enterprise construída em Power Platform responsável pela gestão do ciclo completo da célula de pagamentos interna, incluindo abertura de solicitações, validação, fluxos de aprovação e execução controlada de operações financeiras entre áreas com rastreabilidade e governança.",
+
+      video: "Demonstração da Plataforma",
+      arch: "Arquitetura",
+      automation: "Minha Atuação",
+      impact: "Impacto",
+      integration: "Fluxo do Ciclo de Pagamentos"
     }
   };
 
   const tx = t[lang];
 
   const c = {
-    bg: dark ? "radial-gradient(circle at 80% 20%, #0F172A 0%, #020617 60%)" : "#F5F7FB",
-    card: dark ? "#0F1625" : "#FFFFFF",
-    border: dark ? "#1F2A44" : "#E6EAF2",
+    bg: dark ? "#020617" : "#F5F7FB",
+    card: dark ? "#0F172A" : "#FFFFFF",
+    border: dark ? "#1E293B" : "#E6EAF2",
     text: dark ? "#E8ECF8" : "#0F172A",
-    sub: dark ? "#9AA6C4" : "#64748B",
-
-    accent: "#0EA5E9",
-    accentSoft: "#22D3EE"
+    sub: dark ? "#94A3B8" : "#64748B",
+    accent: "#3B82F6"
   };
 
   return (
     <>
-      <section style={{ background: c.bg, padding: "120px 20px" }}>
+      <section style={{ background: c.bg, padding: "120px 20px", overflowX: "hidden" }}>
         <div style={{ maxWidth: 1280, margin: "auto" }}>
-          
+
+          {/* BACK */}
           <button
             onClick={goBack}
             style={{
@@ -61,7 +64,7 @@ export default function CaseBM({ goBack }: Props) {
               color: c.accent,
               fontWeight: 600,
               cursor: "pointer",
-              marginBottom: 50
+              marginBottom: 40
             }}
           >
             ← {tx.back}
@@ -74,63 +77,68 @@ export default function CaseBM({ goBack }: Props) {
               border: `1px solid ${c.border}`,
               borderRadius: 20,
               padding: 60,
-              marginBottom: 60,
-              position: "relative",
-              overflow: "hidden"
+              marginBottom: 60
             }}
           >
-            <div
-              style={{
-                position: "absolute",
-                width: 420,
-                height: 420,
-                background: c.accent,
-                filter: "blur(160px)",
-                opacity: 0.18,
-                left: -120,
-                top: -140
-              }}
-            />
-
-            <span
-              style={{
-                color: c.accent,
-                fontWeight: 700,
-                fontSize: 12,
-                letterSpacing: 3
-              }}
-            >
+            <span style={{ color: c.accent, fontWeight: 700, fontSize: 12 }}>
               {tx.tag.toUpperCase()}
             </span>
 
-            <h1
-              style={{
-                fontSize: 48,
-                marginTop: 15,
-                marginBottom: 25,
-                color: c.text,
-                maxWidth: 900,
-                lineHeight: 1.1
-              }}
-            >
+            <h1 style={{ fontSize: 48, margin: "20px 0", color: c.text }}>
               {tx.title}
             </h1>
 
-            <p
-              style={{
-                fontSize: 18,
-                maxWidth: 820,
-                lineHeight: 1.9,
-                color: c.sub
-              }}
-            >
+            <p style={{ fontSize: 18, color: c.sub, maxWidth: 900, lineHeight: 1.8 }}>
               {tx.desc}
             </p>
           </div>
 
+          {/* VIDEO */}
+          <div
+            style={{
+              background: c.card,
+              border: `1px solid ${c.border}`,
+              borderRadius: 20,
+              padding: 30,
+              marginBottom: 60
+            }}
+          >
+            <h2 style={{ color: c.text, marginBottom: 20 }}>
+              {tx.video}
+            </h2>
+
+            <div
+              style={{
+                width: "100%",
+                height: 420,
+                borderRadius: 16,
+                overflow: "hidden"
+              }}
+            >
+              <video
+                src="/videos/BMop.mp4"
+                controls
+                autoPlay
+                muted
+                loop
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover"
+                }}
+              />
+            </div>
+          </div>
+
           {/* GRID */}
-          <div style={{ display: "grid", gridTemplateColumns: "360px 1fr", gap: 50 }}>
-            
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "minmax(0,360px) minmax(0,1fr)",
+              gap: 40
+            }}
+          >
+
             {/* SIDEBAR */}
             <aside
               style={{
@@ -139,72 +147,71 @@ export default function CaseBM({ goBack }: Props) {
                 borderRadius: 20,
                 padding: 30,
                 height: "fit-content",
-                position: "sticky",
-                top: 120
+                minWidth: 0
               }}
             >
-              <div
-                style={{
-                  height: 200,
-                  borderRadius: 16,
-                  background: "linear-gradient(135deg,#0EA5E9 0%, #22D3EE 100%)",
-                  opacity: 0.15,
-                  marginBottom: 30
-                }}
+              <Side
+                title="CONTEXT"
+                items={[
+                  "Payment Operations Layer",
+                  "1200+ Users",
+                  "Financial Workflow Control",
+                  "Enterprise Governance System"
+                ]}
+                c={c}
               />
-
-              <Side title="STACK" items={["Power Apps", "Dataverse", "Power Automate", "Outlook API", "Power BI"]} c={c} />
-              <Side title="SCALE" items={["1200+ Users", "Regional Rollout", "15+ Flows", "30 Tables"]} c={c} />
-              <Side title="MODULES" items={["Service Requests", "Queues", "SLA Engine", "Operational Dashboards"]} c={c} />
             </aside>
 
             {/* MAIN */}
-            <main style={{ display: "flex", flexDirection: "column", gap: 40 }}>
-
-              <MetricGrid c={c} />
+            <main
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 40,
+                minWidth: 0
+              }}
+            >
 
               <Card title={tx.arch} c={c}>
-                {lang === "en"
-                  ? "The platform was architected using a hybrid Power Platform model combining Model-Driven governance capabilities for structured data management with Canvas applications focused on request submission usability. Dataverse served as the operational backbone while automation flows orchestrated routing decisions, SLA enforcement and lifecycle status transitions."
-                  : "A plataforma foi arquitetada utilizando um modelo híbrido em Power Platform combinando capacidades Model-Driven voltadas à governança de dados estruturados com aplicações Canvas focadas na usabilidade de abertura de solicitações. O Dataverse atuou como base operacional enquanto fluxos de automação orquestraram decisões de roteamento, aplicação de SLA e transições de status ao longo do ciclo de vida."}
+                {lang === "pt"
+                  ? "A arquitetura foi desenhada para suportar um fluxo financeiro crítico, utilizando Power Platform com Dataverse como base central, Power Apps para operação e Power Automate para orquestração de aprovações, validações e execução controlada de pagamentos entre áreas."
+                  : "The architecture was designed to support a critical financial workflow using Power Platform with Dataverse as the core data layer, Power Apps for operations and Power Automate orchestrating approvals, validations and controlled payment execution across business units."}
               </Card>
 
               <Card title={tx.automation} c={c}>
-                {lang === "en"
-                  ? "Engineering ownership included creation of multi-stage routing flows, refactoring legacy automation logic, implementing escalation strategies and designing notification distribution models across operational teams. Performance optimization initiatives reduced execution latency in high-volume service scenarios."
-                  : "A atuação técnica envolveu criação de fluxos de roteamento multi-estágio, refatoração de lógicas de automação legadas, implementação de estratégias de escalonamento e desenho de modelos de distribuição de notificações entre times operacionais. Iniciativas de otimização de performance reduziram latências de execução em cenários de alto volume de solicitações."}
+                {lang === "pt"
+                  ? "Responsável pela engenharia de automações de pagamento, incluindo regras de validação, roteamento de aprovações, tratamento de exceções e manutenção de estabilidade em ambiente produtivo crítico."
+                  : "Responsible for payment automation engineering, including validation rules, approval routing, exception handling and maintaining stability in a critical production environment."}
               </Card>
 
-              <Card title={tx.lifecycle} c={c}>
-                <p style={{ marginBottom: 20 }}>
-                  {lang === "en"
-                    ? "Core automation responsible for controlling request lifecycle transitions from submission to resolution."
-                    : "Automação central responsável por controlar as transições de ciclo de vida das solicitações desde a abertura até a resolução."}
-                </p>
+              <Card title={tx.integration} c={c}>
+                <pre
+                  style={{
+                    background: "#020617",
+                    color: "#E5E7EB",
+                    padding: 20,
+                    borderRadius: 12,
+                    fontSize: 12,
+                    overflowX: "auto"
+                  }}
+                >
+{`IF Payment Request = Submitted
+ → Validate Data
+ → Route to Approver
 
-<pre style={{
-background:"#020617",
-color:"#E5E7EB",
-padding:22,
-borderRadius:16,
-fontSize:13
-}}>
-{`IF Priority = High
- → Assign Queue = Level 2
- → Notify Manager
- → Start SLA Timer
+IF Approved
+ → Execute Payment
+ → Log Transaction
 
-ELSE
- → Assign Queue = Level 1
- → Standard SLA`}
-</pre>
-
+IF Rejected
+ → Notify Requester`}
+                </pre>
               </Card>
 
               <Card title={tx.impact} c={c}>
-                {lang === "en"
-                  ? "The platform significantly reduced reliance on email-based service coordination and spreadsheet tracking approaches. Teams gained structured visibility into backlog volume, SLA compliance and request throughput enabling more predictable operational execution."
-                  : "A plataforma reduziu significativamente a dependência de coordenação de serviços baseada em e-mails e controles em planilhas. Os times passaram a ter visibilidade estruturada sobre volume de backlog, cumprimento de SLA e throughput de solicitações, permitindo uma execução operacional mais previsível."}
+                {lang === "pt"
+                  ? "Redução de risco operacional no fluxo de pagamentos, eliminação de controle manual via planilhas e aumento de governança e rastreabilidade nas operações financeiras."
+                  : "Reduced operational risk in payment workflows, elimination of manual spreadsheet tracking and improved governance and traceability in financial operations."}
               </Card>
 
             </main>
@@ -221,41 +228,30 @@ ELSE
 
 function Side({ title, items, c }: any) {
   return (
-    <div style={{ marginBottom: 28 }}>
-      <h4 style={{ fontSize: 11, letterSpacing: 3, color: c.accent, marginBottom: 10 }}>
+    <div style={{ marginBottom: 30 }}>
+      <h4 style={{ fontSize: 12, color: c.accent, marginBottom: 10 }}>
         {title}
       </h4>
-      <ul style={{ color: c.sub, fontSize: 15, lineHeight: 1.9 }}>
+      <ul style={{ color: c.sub, lineHeight: 1.8 }}>
         {items.map((i: string) => <li key={i}>{i}</li>)}
       </ul>
     </div>
   );
 }
 
-function MetricGrid({ c }: any) {
-  const data = [
-    ["1200+", "Enterprise Users"],
-    ["15+", "Automation Flows"],
-    ["30", "Dataverse Tables"],
-  ];
-
-  return (
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 25 }}>
-      {data.map((m) => (
-        <div key={m[1]} style={{ background: c.card, border: `1px solid ${c.border}`, borderRadius: 18, padding: 30 }}>
-          <h2 style={{ color: c.text, fontSize: 30 }}>{m[0]}</h2>
-          <span style={{ color: c.sub, fontSize: 14 }}>{m[1]}</span>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 function Card({ title, children, c }: any) {
   return (
-    <div style={{ background: c.card, border: `1px solid ${c.border}`, borderRadius: 20, padding: 45 }}>
-      <h2 style={{ fontSize: 26, color: c.text, marginBottom: 15 }}>{title}</h2>
-      <div style={{ color: c.sub, lineHeight: 1.9, fontSize: 16 }}>
+    <div
+      style={{
+        background: c.card,
+        border: `1px solid ${c.border}`,
+        borderRadius: 20,
+        padding: 40,
+        minWidth: 0
+      }}
+    >
+      <h2 style={{ color: c.text, marginBottom: 15 }}>{title}</h2>
+      <div style={{ color: c.sub, lineHeight: 1.8 }}>
         {children}
       </div>
     </div>

@@ -1,4 +1,5 @@
 import { useTheme } from "../context/ThemeContext";
+import { useLang } from "../context/LangContext";
 import Footer from "../components/Footer";
 
 interface Props {
@@ -6,40 +7,76 @@ interface Props {
 }
 
 export default function CaseCambioImportacao({ goBack }: Props) {
-
   const { theme } = useTheme();
+  const { lang } = useLang();
+
   const dark = theme === "dark";
 
-  const accent = "#4F46E5";
-  const accentSoft = "#A5B4FC";
+  const t = {
+    en: {
+      back: "Back to Projects",
+      tag: "Treasury Process Platform",
+      title: "Import Exchange Request & Treasury Governance Platform",
+      desc:
+        "Enterprise treasury platform created to standardize and centralize foreign exchange remittance requests related to import payments across South America. The solution replaced fragmented email-based validation cycles with a structured operational ecosystem focused on approval governance, payment traceability, attachment validation and scalable treasury execution between business units and finance operations.",
+
+      video: "Platform Walkthrough",
+      arch: "Architecture",
+      automation: "My Role",
+      impact: "Impact",
+      integration: "Approval Workflow"
+    },
+
+    pt: {
+      back: "Voltar aos Projetos",
+      tag: "Plataforma de Processos Treasury",
+      title: "Plataforma de Solicitação Cambial e Governança Treasury",
+      desc:
+        "Plataforma enterprise criada para centralizar e padronizar solicitações de remessas cambiais relacionadas a pagamentos de importação em toda a América do Sul. A solução substituiu ciclos fragmentados de validação via email por um ecossistema operacional estruturado focado em governança de aprovações, rastreabilidade de pagamentos, validação documental e execução escalável entre áreas de negócio e operações financeiras.",
+
+      video: "Demonstração da Plataforma",
+      arch: "Arquitetura",
+      automation: "Minha Atuação",
+      impact: "Impacto",
+      integration: "Fluxo de Aprovação"
+    }
+  };
+
+  const tx = t[lang];
 
   const c = {
-    bg: dark
-      ? "radial-gradient(circle at 20% 10%, #0B0F2A 0%, #020617 60%)"
-      : "#EEF2FF",
-    card: dark ? "#0F1625" : "#FFFFFF",
-    border: dark ? "#1F2A44" : "#E6EAF2",
+    bg: dark ? "#020617" : "#EEF2FF",
+    card: dark ? "#0F172A" : "#FFFFFF",
+    border: dark ? "#1E293B" : "#E6EAF2",
     text: dark ? "#E8ECF8" : "#0F172A",
-    sub: dark ? "#9AA6C4" : "#64748B"
+    sub: dark ? "#94A3B8" : "#64748B",
+    accent: "#4F46E5"
   };
 
   return (
     <>
-      <section style={{ background: c.bg, padding: "120px 20px" }}>
+      <section
+        style={{
+          background: c.bg,
+          padding: "120px 20px",
+          overflowX: "hidden"
+        }}
+      >
         <div style={{ maxWidth: 1280, margin: "auto" }}>
 
+          {/* BACK */}
           <button
             onClick={goBack}
             style={{
               background: "none",
               border: "none",
-              color: accent,
+              color: c.accent,
               fontWeight: 600,
               cursor: "pointer",
-              marginBottom: 50
+              marginBottom: 40
             }}
           >
-            ← Back to Projects
+            ← {tx.back}
           </button>
 
           {/* HERO */}
@@ -49,63 +86,74 @@ export default function CaseCambioImportacao({ goBack }: Props) {
               border: `1px solid ${c.border}`,
               borderRadius: 20,
               padding: 60,
-              marginBottom: 60,
-              position: "relative",
-              overflow: "hidden"
+              marginBottom: 60
             }}
           >
-            <div
-              style={{
-                position: "absolute",
-                width: 420,
-                height: 420,
-                background: accent,
-                filter: "blur(160px)",
-                opacity: 0.18,
-                right: -120,
-                top: -140
-              }}
-            />
-
-            <span
-              style={{
-                color: accent,
-                fontWeight: 700,
-                fontSize: 12,
-                letterSpacing: 3
-              }}
-            >
-              TREASURY PROCESS PLATFORM
+            <span style={{ color: c.accent, fontWeight: 700, fontSize: 12 }}>
+              {tx.tag.toUpperCase()}
             </span>
 
-            <h1
-              style={{
-                fontSize: 48,
-                marginTop: 15,
-                marginBottom: 25,
-                color: c.text,
-                maxWidth: 900,
-                lineHeight: 1.1
-              }}
-            >
-              Import Exchange Request System
+            <h1 style={{ fontSize: 48, margin: "20px 0", color: c.text }}>
+              {tx.title}
             </h1>
 
             <p
               style={{
                 fontSize: 18,
-                maxWidth: 820,
-                lineHeight: 1.9,
-                color: c.sub
+                color: c.sub,
+                maxWidth: 900,
+                lineHeight: 1.8
               }}
             >
-              Financial workflow platform created to standardize foreign remittance requests related to import payments across South America. 
-              The solution replaced fragmented email-based validation cycles with a structured approval lifecycle and centralized treasury governance.
+              {tx.desc}
             </p>
           </div>
 
+          {/* VIDEO */}
+          <div
+            style={{
+              background: c.card,
+              border: `1px solid ${c.border}`,
+              borderRadius: 20,
+              padding: 30,
+              marginBottom: 60
+            }}
+          >
+            <h2 style={{ color: c.text, marginBottom: 20 }}>
+              {tx.video}
+            </h2>
+
+            <div
+              style={{
+                width: "100%",
+                height: 420,
+                borderRadius: 16,
+                overflow: "hidden"
+              }}
+            >
+              <video
+                src="/videos/fluxopag.mp4"
+                controls
+                autoPlay
+                muted
+                loop
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover"
+                }}
+              />
+            </div>
+          </div>
+
           {/* GRID */}
-          <div style={{ display: "grid", gridTemplateColumns: "360px 1fr", gap: 50 }}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "minmax(0,360px) minmax(0,1fr)",
+              gap: 40
+            }}
+          >
 
             {/* SIDEBAR */}
             <aside
@@ -115,47 +163,77 @@ export default function CaseCambioImportacao({ goBack }: Props) {
                 borderRadius: 20,
                 padding: 30,
                 height: "fit-content",
-                position: "sticky",
-                top: 120
+                minWidth: 0
               }}
             >
-              <Side title="STACK" items={["Power Apps", "Power Automate", "SharePoint", "Email Services"]} accent={accent} c={c} />
-              <Side title="DOMAIN" items={["Treasury Operations", "FX Payments", "Import Governance"]} accent={accent} c={c} />
-              <Side title="CAPABILITIES" items={["Lifecycle Tracking", "Approval Routing", "Attachment Validation"]} accent={accent} c={c} />
+              <Side
+                title="CONTEXT"
+                items={[
+                  "LATAM Treasury Operations",
+                  "Foreign Exchange Governance",
+                  "Import Payment Approval Flows",
+                  "Enterprise Financial Validation"
+                ]}
+                c={c}
+              />
             </aside>
 
             {/* MAIN */}
-            <main style={{ display: "flex", flexDirection: "column", gap: 40 }}>
+            <main
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 40,
+                minWidth: 0
+              }}
+            >
 
-              <MetricGrid c={c} />
-
-              <Card title="Process Standardization" c={c}>
-                Users can create structured exchange requests choosing between advance payment or authorized payment journeys. 
-                The application ensures required documentation and request completeness before submission.
+              <Card title={tx.arch} c={c}>
+                {lang === "pt"
+                  ? "A solução foi construída em Power Platform utilizando Power Apps para centralização operacional, SharePoint como camada documental e Power Automate para automações de aprovação, validação e rastreabilidade. A arquitetura suporta diferentes jornadas de pagamento cambial garantindo consistência operacional, controle documental e governança financeira entre múltiplos países e áreas corporativas."
+                  : "The solution was built on Power Platform using Power Apps for centralized operations, SharePoint as the document layer and Power Automate for approval, validation and traceability automations. The architecture supports multiple foreign exchange payment journeys ensuring operational consistency, document control and financial governance across countries and corporate teams."}
               </Card>
 
-              <Card title="Approval Governance" c={c}>
-                Treasury teams review and approve requests directly within the platform. 
-                Automated notifications allow request resubmission when adjustments are required, reducing back-and-forth communication cycles.
+              <Card title={tx.automation} c={c}>
+                {lang === "pt"
+                  ? "Minha atuação esteve focada na evolução da plataforma, criação de fluxos automatizados de aprovação, validação de anexos financeiros e melhoria da experiência operacional para áreas solicitantes e times de treasury. O projeto envolveu transformar um processo altamente dependente de emails em um fluxo estruturado, rastreável e escalável."
+                  : "My role focused on platform evolution, creation of automated approval flows, validation of financial attachments and improving the operational experience for requesters and treasury teams. The project transformed a highly email-dependent process into a structured, traceable and scalable workflow."}
               </Card>
 
-              <Card title="Operational Visibility" c={c}>
-                Status filtering and lifecycle tracking provide centralized visibility of requests, enabling better prioritization and risk management.
+              <Card title={tx.integration} c={c}>
+                <p style={{ marginBottom: 15 }}>
+                  {lang === "pt"
+                    ? "O fluxo operacional controla todo o ciclo de aprovação das solicitações cambiais desde a criação até a validação final pelo treasury."
+                    : "The operational workflow controls the entire approval lifecycle of foreign exchange requests from creation to final treasury validation."}
+                </p>
+
+                <pre
+                  style={{
+                    background: "#020617",
+                    color: "#E5E7EB",
+                    padding: 20,
+                    borderRadius: 12,
+                    fontSize: 12,
+                    overflowX: "auto"
+                  }}
+                >
+{`CREATE FX Request
+→ Upload Financial Documents
+→ Validate Required Attachments
+→ Treasury Approval Flow
+→ Return for Adjustment (if needed)
+→ Final Payment Authorization`}
+                </pre>
               </Card>
 
-              <Card title="Business Impact" c={c}>
-                <ul>
-                  <li>Reduced manual communication between business and treasury</li>
-                  <li>Improved governance over foreign exchange approvals</li>
-                  <li>Faster turnaround time for payment processing</li>
-                  <li>Lower operational risk and data inconsistency</li>
-                  <li>Regional scalability of import payment workflows</li>
-                </ul>
+              <Card title={tx.impact} c={c}>
+                {lang === "pt"
+                  ? "A plataforma reduziu dependências manuais entre áreas de negócio e treasury, aumentou a rastreabilidade das aprovações financeiras e trouxe maior previsibilidade operacional para pagamentos de importação. O resultado foi uma operação mais segura, auditável e escalável para processos cambiais em nível regional."
+                  : "The platform reduced manual dependencies between business and treasury teams, increased traceability of financial approvals and brought greater operational predictability for import payment processing. The result was a safer, auditable and scalable foreign exchange operation at regional level."}
               </Card>
 
             </main>
           </div>
-
         </div>
       </section>
 
@@ -166,19 +244,14 @@ export default function CaseCambioImportacao({ goBack }: Props) {
 
 /* COMPONENTS */
 
-function Side({ title, items, accent, c }: any) {
+function Side({ title, items, c }: any) {
   return (
-    <div style={{ marginBottom: 28 }}>
-      <h4 style={{
-        fontSize: 11,
-        letterSpacing: 3,
-        color: accent,
-        marginBottom: 10
-      }}>
+    <div style={{ marginBottom: 30 }}>
+      <h4 style={{ fontSize: 12, color: c.accent, marginBottom: 10 }}>
         {title}
       </h4>
 
-      <ul style={{ color: c.sub, fontSize: 15, lineHeight: 1.9 }}>
+      <ul style={{ color: c.sub, lineHeight: 1.8 }}>
         {items.map((i: string) => (
           <li key={i}>{i}</li>
         ))}
@@ -187,48 +260,22 @@ function Side({ title, items, accent, c }: any) {
   );
 }
 
-function MetricGrid({ c }: any) {
-
-  const data = [
-    ["2", "Request Journeys"],
-    ["LATAM", "Treasury Scope"],
-    ["Auto", "Approval Flow"]
-  ];
-
-  return (
-    <div style={{
-      display:"grid",
-      gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",
-      gap:25
-    }}>
-      {data.map((m)=>(
-        <div key={m[1]} style={{
-          background:c.card,
-          border:`1px solid ${c.border}`,
-          borderRadius:18,
-          padding:30
-        }}>
-          <h2 style={{color:c.text,fontSize:30}}>{m[0]}</h2>
-          <span style={{color:c.sub,fontSize:14}}>{m[1]}</span>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 function Card({ title, children, c }: any) {
   return (
-    <div style={{
-      background:c.card,
-      border:`1px solid ${c.border}`,
-      borderRadius:20,
-      padding:45
-    }}>
-      <h2 style={{ fontSize:26, color:c.text, marginBottom:15 }}>
+    <div
+      style={{
+        background: c.card,
+        border: `1px solid ${c.border}`,
+        borderRadius: 20,
+        padding: 40,
+        minWidth: 0
+      }}
+    >
+      <h2 style={{ color: c.text, marginBottom: 15 }}>
         {title}
       </h2>
 
-      <div style={{ color:c.sub, lineHeight:1.9, fontSize:16 }}>
+      <div style={{ color: c.sub, lineHeight: 1.8 }}>
         {children}
       </div>
     </div>
