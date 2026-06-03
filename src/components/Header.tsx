@@ -52,7 +52,7 @@ export default function Header({ onNavigate }: Props) {
         {/* Logo + Nome */}
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <img
-            src="/public/crlogo.png"
+            src="/crlogo.png"
             alt="Camila Reis Logo"
             style={{ width: 48, height: 48, borderRadius: 8 }}
           />
