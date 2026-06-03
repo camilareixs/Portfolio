@@ -83,24 +83,11 @@ export default function Home({ goProjects }: Props) {
           flexDirection: isMobile ? "column" : "row",
           justifyContent: "space-between",
           alignItems: isMobile ? "flex-start" : "center",
-          padding: isMobile ? "60px 20px" : "80px 80px 50px",
+          padding: isMobile ? "50px 20px" : "80px 80px 50px",
           gap: isMobile ? 30 : 80
         }}
       >
-        {/* LEFT */}
         <div style={styles.left}>
-          <div
-            style={{
-              fontSize: 12,
-              letterSpacing: 2,
-              textTransform: "uppercase",
-              color: primary,
-              fontWeight: 600
-            }}
-          >
-           
-          </div>
-
           <h1
             style={{
               ...styles.title,
@@ -123,14 +110,12 @@ export default function Home({ goProjects }: Props) {
             {text.desc}
           </p>
 
-          {/* BOTÃO FIXO (NÃO ESTICA MAIS) */}
           <button
             onClick={goProjects}
             style={{
               background: primary,
               color: "#fff",
               fontWeight: 600,
-              cursor: "pointer",
               border: "none",
               borderRadius: 10,
               padding: "10px 18px",
@@ -139,14 +124,14 @@ export default function Home({ goProjects }: Props) {
               alignItems: "center",
               justifyContent: "center",
               width: "fit-content",
-              minWidth: 140
+              minWidth: 140,
+              cursor: "pointer"
             }}
           >
             {text.viewProjects}
           </button>
         </div>
 
-        {/* RIGHT */}
         {!isMobile && (
           <div style={styles.right}>
             <img src="crlogo.png" style={styles.logo} />
@@ -159,18 +144,17 @@ export default function Home({ goProjects }: Props) {
         style={{
           ...styles.journeySection,
           background: sectionBg,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center"
+          padding: isMobile ? "40px 20px" : "70px 20px",
+          textAlign: "center"
         }}
       >
         <h2
           style={{
             ...styles.journeyTitle,
-            marginBottom: 50,
             color: textColor,
             fontSize: isMobile ? 22 : 34,
-            marginTop: 0
+            marginTop: 0,
+            marginBottom: isMobile ? 20 : 50
           }}
         >
           {text.processTitle}
@@ -184,7 +168,8 @@ export default function Home({ goProjects }: Props) {
               flexDirection: "column",
               gap: 16,
               maxWidth: 520,
-              width: "100%"
+              width: "100%",
+              margin: "0 auto"
             }}
           >
             {journey.map((step, i) => (
@@ -336,7 +321,6 @@ const styles: Record<string, CSSProperties> = {
   },
 
   journeySection: {
-    padding: "70px 20px",
     textAlign: "center"
   },
 
