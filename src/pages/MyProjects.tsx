@@ -35,7 +35,7 @@ export default function MyProjects({ openCase }: Props) {
     {
       id: "actus",
       title: "ACTUS Platform",
-      cover: "/public/actus.jpg",
+      cover: "/actus.jpg",
       users: "2800+ USERS",
       region: "LATAM",
       domain: { pt: "Compliance", en: "Compliance" },
@@ -49,7 +49,7 @@ export default function MyProjects({ openCase }: Props) {
     {
       id: "bm",
       title: "Environmental Measurement",
-      cover: "/public/bmop.png",
+      cover: "/bmop.png",
       users: "-85% MANUAL WORK",
       region: "BRAZIL",
       domain: { pt: "Financeiro", en: "Finance" },
@@ -63,7 +63,7 @@ export default function MyProjects({ openCase }: Props) {
     {
       id: "remessa",
       title: "Financial Tools",
-      cover: "/public/remessa.png",
+      cover: "/remessa.png",
       users: "FINANCE TEAM",
       region: "BRAZIL",
       domain: { pt: "Financeiro", en: "Finance" },
@@ -77,7 +77,7 @@ export default function MyProjects({ openCase }: Props) {
     {
       id: "ipo",
       title: "IPO Governance",
-      cover: "/public/ipo.png",
+      cover: "/ipo.png",
       users: "REGIONAL TEAMS",
       region: "LATAM",
       domain: { pt: "Compliance", en: "Compliance" },
@@ -91,7 +91,7 @@ export default function MyProjects({ openCase }: Props) {
     {
       id: "controle-de-delegados",
       title: "Global Mobility Management",
-      cover: "/public/controle.png",
+      cover: "/controle.png",
       users: "HR TEAMS",
       region: "LATAM",
       domain: { pt: "RH", en: "HR" },
@@ -105,7 +105,7 @@ export default function MyProjects({ openCase }: Props) {
     {
       id: "cambio-importacao",
       title: "Import Governance",
-      cover: "/public/fluxopag.png",
+      cover: "/fluxopag.png",
       users: "TREASURY",
       region: "LATAM",
       domain: { pt: "Financeiro", en: "Finance" },
@@ -119,7 +119,7 @@ export default function MyProjects({ openCase }: Props) {
     {
       id: "measurement-report",
       title: "Financial Operations Automation",
-      cover: "/public/measurement.png",
+      cover: "/measurement.png",
       users: "FINANCE LATAM",
       region: "LATAM",
       domain: { pt: "Financeiro", en: "Finance" },
@@ -133,7 +133,7 @@ export default function MyProjects({ openCase }: Props) {
     {
       id: "cd-portal",
       title: "Cami&Duda Portal",
-      cover: "/public/camiduda.png",
+      cover: "/camiduda.png",
       users: "RETAIL",
       region: "BRAZIL",
       domain: { pt: "Vendas", en: "Sales" },
