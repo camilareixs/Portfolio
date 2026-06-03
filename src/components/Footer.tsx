@@ -34,4 +34,4 @@ export default function Footer() {
   );
 }
 
-const styles: Record<string, CSSProperties> = {};
+//const styles: Record<string, CSSProperties> = {};

@@ -69,7 +69,7 @@ desc: "Enterprise platform developed to manage environmental service measurement
               marginBottom: 40
             }}
           >
-            ← {tx.back}
+            ← {lang === "en" ? "Back" : "Voltar"}
           </button>
 
           {/* HERO */}
