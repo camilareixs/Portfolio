@@ -295,7 +295,7 @@ export default function Home({ goProjects }: Props) {
 /* STYLES */
 const styles: Record<string, CSSProperties> = {
   hero: {
-    minHeight: "75vh",
+    minHeight: "50vh",
     display: "flex"
   },
 
