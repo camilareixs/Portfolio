@@ -1,17 +1,27 @@
 import { useLang } from "../context/LangContext";
 import { useTheme } from "../context/ThemeContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { CSSProperties } from "react";
 
 type Props = { goProjects: () => void };
 
 export default function Home({ goProjects }: Props) {
-
   const { lang } = useLang();
   const { theme } = useTheme();
   const [hovered, setHovered] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   const primary = theme === "light" ? "#60365c" : "#8f5a89";
+  const textColor = theme === "light" ? "#111" : "#EEE";
+  const descColor = theme === "light" ? "#555" : "#AAA";
+  const sectionBg = theme === "light" ? "#fff" : "#1A1A1A";
 
   const text = {
     title:
@@ -25,7 +35,6 @@ export default function Home({ goProjects }: Props) {
         : "Transformando fluxos operacionais em soluções digitais escaláveis através de Power Platform, automação e integrações corporativas.",
 
     viewProjects: lang === "en" ? "View Projects" : "Ver Projetos",
-    downloadCV: lang === "en" ? "Download CV" : "Baixar CV",
 
     processTitle:
       lang === "en"
@@ -36,143 +45,335 @@ export default function Home({ goProjects }: Props) {
   const journey = [
     {
       title: lang === "en" ? "Diagnosis" : "Diagnóstico",
-      desc: lang === "en"
-        ? "Understanding business context, stakeholders and real operational pain points."
-        : "Entendimento do contexto do negócio, stakeholders e dores operacionais reais."
+      desc:
+        lang === "en"
+          ? "Understanding business context, stakeholders and pain points."
+          : "Entendimento do contexto do negócio e dores reais."
     },
     {
-      title: lang === "en" ? "Process Mapping" : "Mapeamento",
-      desc: lang === "en"
-        ? "Analyzing workflows, identifying bottlenecks and automation opportunities."
-        : "Análise de fluxos, identificação de gargalos e oportunidades de automação."
+      title: lang === "en" ? "Mapping" : "Mapeamento",
+      desc:
+        lang === "en"
+          ? "Identifying bottlenecks and automation opportunities."
+          : "Identificação de gargalos e automação."
     },
     {
-      title: lang === "en" ? "Solution Architecture" : "Construção",
-      desc: lang === "en"
-        ? "Designing and building scalable Power Platform solutions with structured logic and efficient integrations."
-        : "Definição e desenvolvimento de soluções escaláveis em Power Platform, com lógica estruturada e integrações eficientes."
+      title: lang === "en" ? "Build" : "Construção",
+      desc:
+        lang === "en"
+          ? "Building scalable Power Platform solutions."
+          : "Criação de soluções escaláveis."
     },
     {
-      title: lang === "en" ? "Implementation" : "Implementação",
-      desc: lang === "en"
-        ? "Driving adoption and ensuring measurable business value through effective delivery."
-        : "Entrega orientada à adoção, garantindo uso efetivo e geração de valor mensurável para o negócio."
+      title: lang === "en" ? "Delivery" : "Entrega",
+      desc:
+        lang === "en"
+          ? "Ensuring measurable business value."
+          : "Garantia de valor para o negócio."
     }
   ];
 
-  const sectionBg = theme === "light" ? "#fff" : "#1A1A1A";
-
-  const textColor = theme === "light" ? "#111" : "#EEE";
-  const descColor = theme === "light" ? "#555" : "#AAA";
-
   return (
     <>
-      <section style={{ ...styles.hero, background: sectionBg }}>
-        <div style={styles.heroContent}>
-
-          <div style={styles.left}>
-            <h1 style={{ ...styles.title, color: textColor }}>
-              {text.title}
-            </h1>
-
-            <p style={{ ...styles.desc, color: descColor }}>
-              {text.desc}
-            </p>
-
-            <div style={styles.actions}>
-              <button
-                style={{ ...styles.primaryBtn, background: primary }}
-                onClick={goProjects}
-              >
-                {text.viewProjects}
-              </button>
-
-              
-            </div>
+      {/* HERO */}
+      <header
+        style={{
+          ...styles.hero,
+          background: sectionBg,
+          flexDirection: isMobile ? "column" : "row",
+          justifyContent: "space-between",
+          alignItems: isMobile ? "center" : "flex-start",
+          padding: isMobile ? "60px 20px" : "80px 80px 40px",
+          gap: isMobile ? 30 : 80
+        }}
+      >
+        {/* LEFT */}
+        <div style={styles.left}>
+          <div
+            style={{
+              fontSize: 12,
+              letterSpacing: 2,
+              textTransform: "uppercase",
+              color: primary,
+              fontWeight: 600
+            }}
+          >
+            
           </div>
 
-          <div style={styles.right}>
-            <img src="crlogo.png" style={styles.logo}/>
-          </div>
+          <h1
+            style={{
+              ...styles.title,
+              color: textColor,
+              fontSize: isMobile ? 34 : 56,
+              lineHeight: 1.1
+            }}
+          >
+            {text.title}
+          </h1>
 
+          <p
+            style={{
+              ...styles.desc,
+              color: descColor,
+              fontSize: isMobile ? 15 : 17,
+              maxWidth: 520
+            }}
+          >
+            {text.desc}
+          </p>
+
+          <button
+            onClick={goProjects}
+            style={{
+              ...styles.primaryBtn,
+              background: primary,
+              padding: isMobile ? "12px 18px" : "10px 16px",
+              fontSize: 13,
+              width: isMobile ? "100%" : "auto",
+              borderRadius: 10
+            }}
+          >
+            {text.viewProjects}
+          </button>
         </div>
-      </section>
 
-      <section style={{ ...styles.journeySection, background: sectionBg }}>
-        <h2 style={{ ...styles.journeyTitle, color: textColor }}>
+        {/* RIGHT */}
+        {!isMobile && (
+          <div style={styles.right}>
+            <img src="crlogo.png" style={styles.logo} />
+          </div>
+        )}
+      </header>
+
+      {/* JOURNEY */}
+      <section
+        style={{
+          ...styles.journeySection,
+          background: sectionBg
+        }}
+      >
+        <h2
+          style={{
+            ...styles.journeyTitle,
+            color: textColor,
+            fontSize: isMobile ? 22 : 34
+          }}
+        >
           {text.processTitle}
         </h2>
 
-        <div style={styles.journeyContainer}>
-          {journey.map((step, i) => (
-            <div
-              key={i}
-              style={{
-                ...styles.step,
-                transform: hovered === i ? "translateY(-10px)" : "none"
-              }}
-              onMouseEnter={() => setHovered(i)}
-              onMouseLeave={() => setHovered(null)}
-            >
-              <div style={{
-                ...styles.circle,
-                background: hovered === i ? primary : "transparent",
-                border: `2px solid ${primary}`,
-                color: hovered === i ? "#fff" : primary
-              }}>
-                {i + 1}
+        {/* MOBILE - VERTICAL LIST */}
+        {isMobile ? (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 16,
+              maxWidth: 520,
+              margin: "0 auto"
+            }}
+          >
+            {journey.map((step, i) => (
+              <div
+                key={i}
+                style={{
+                  display: "flex",
+                  gap: 14,
+                  alignItems: "flex-start",
+                  padding: 16,
+                  borderRadius: 14,
+                  background:
+                    theme === "light"
+                      ? "rgba(0,0,0,0.03)"
+                      : "rgba(255,255,255,0.04)",
+                  border:
+                    theme === "light"
+                      ? "1px solid rgba(0,0,0,0.06)"
+                      : "1px solid rgba(255,255,255,0.08)"
+                }}
+              >
+                <div
+                  style={{
+                    ...styles.circle,
+                    background: primary,
+                    minWidth: 42,
+                    minHeight: 42,
+                    fontSize: 14
+                  }}
+                >
+                  {i + 1}
+                </div>
+
+                <div>
+                  <h3 style={{ color: textColor, margin: 0, fontSize: 16 }}>
+                    {step.title}
+                  </h3>
+
+                  <p
+                    style={{
+                      color: descColor,
+                      marginTop: 6,
+                      fontSize: 13,
+                      lineHeight: 1.4
+                    }}
+                  >
+                    {step.desc}
+                  </p>
+                </div>
               </div>
+            ))}
+          </div>
+        ) : (
+          <div style={styles.journeyContainer}>
+            {journey.map((step, i) => (
+              <div
+                key={i}
+                style={styles.step}
+                onMouseEnter={() => setHovered(i)}
+                onMouseLeave={() => setHovered(null)}
+              >
+                <div
+                  style={{
+                    ...styles.circle,
+                    background:
+                      hovered === i ? primary : "transparent",
+                    border: `2px solid ${primary}`,
+                    color: hovered === i ? "#fff" : primary
+                  }}
+                >
+                  {i + 1}
+                </div>
 
-              <h3 style={{ ...styles.stepTitle, color: textColor }}>
-                {step.title}
-              </h3>
-
-              <p style={{ ...styles.stepDesc, color: descColor }}>
-                {step.desc}
-              </p>
-            </div>
-          ))}
-        </div>
+                <h3 style={{ color: textColor }}>{step.title}</h3>
+                <p style={{ color: descColor }}>{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        )}
       </section>
 
-      <footer style={{ ...styles.footer, background: sectionBg, color: primary }}>
-        <div style={styles.footerContainer}>
-          <ul style={styles.footerLinks}>
-            {["Home","About","Projects","Contact"].map(link => (
-              <li key={link} style={styles.footerLink}>{link}</li>
-            ))}
-          </ul>
-        </div>
+      {/* FOOTER FINAL */}
+      <footer
+        style={{
+          ...styles.footer,
+          background: sectionBg,
+          color: primary
+        }}
+      >
+        <ul
+          style={{
+            display: "flex",
+            gap: 14,
+            listStyle: "none",
+            padding: 0,
+            margin: 0,
+            flexWrap: "wrap",
+            justifyContent: "center"
+          }}
+        >
+          {["Home", "About", "Projects", "Contact"].map((link) => (
+            <li
+              key={link}
+              style={{
+                cursor: "pointer",
+                fontSize: 13,
+                opacity: 0.85
+              }}
+            >
+              {link}
+            </li>
+          ))}
+        </ul>
 
-        <p style={styles.footerCopy}>
-          © 2026 Camila Reis. All rights reserved.
-        </p>
+        {/* CONTATO EM UMA LINHA */}
+        <div
+          style={{
+            fontSize: 12,
+            opacity: 0.75,
+            textAlign: "center",
+            marginTop: 10
+          }}
+        >
+          <div>
+            camilalaurindoreis@gmail.com | +55 11 98803-3775
+          </div>
+        </div>
       </footer>
     </>
   );
 }
 
+/* STYLES */
 const styles: Record<string, CSSProperties> = {
-  hero:{ minHeight:"10vh", display:"flex", alignItems:"center", justifyContent:"center", padding:"40px 20px 60px" },
-  heroContent:{ maxWidth:1200, width:"100%", display:"flex", justifyContent:"space-between", gap:80, alignItems:"center" },
-  left:{ flex:1, display:"flex", flexDirection:"column", gap:20 },
-  right:{ flex:1, display:"flex", justifyContent:"center" },
-  logo:{ width:230 },
-  title:{ fontSize:56, lineHeight:1.1, margin:0, letterSpacing:-1 },
-  desc:{ fontSize:18, maxWidth:540, lineHeight:1.6 },
-  actions:{ display:"flex", gap:16, marginTop:20 },
-  primaryBtn:{ padding:"15px 32px", borderRadius:14, border:"none", color:"#fff", fontWeight:600, cursor:"pointer", fontSize:15 },
-  ghostBtn:{ padding:"15px 32px", borderRadius:14, background:"transparent", fontWeight:600, cursor:"pointer", fontSize:15 },
-  journeySection:{ padding:"100px 20px 140px", textAlign:"center" },
-  journeyTitle:{ fontSize:36, marginBottom:100 },
-  journeyContainer:{ maxWidth:1000, margin:"0 auto", display:"flex", justifyContent:"space-between", gap:40 },
-  step:{ width:220, textAlign:"left", transition:"0.35s" },
-  circle:{ width:58, height:58, borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center", fontWeight:700, marginBottom:20, transition:"0.35s" },
-  stepTitle:{ fontSize:19, marginBottom:8 },
-  stepDesc:{ fontSize:15, lineHeight:1.6 },
-  footer:{ padding:"30px 20px", textAlign:"center" },
-  footerContainer:{ display:"flex", flexDirection:"column", alignItems:"center", gap:12 },
-  footerLinks:{ display:"flex", gap:20, listStyle:"none", padding:0, margin:0 },
-  footerLink:{ cursor:"pointer", fontWeight:500 },
-  footerCopy:{ marginTop:16, fontSize:12 }
+  hero: {
+    minHeight: "75vh",
+    display: "flex"
+  },
+
+  left: {
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    gap: 18
+  },
+
+  right: {
+    flex: 1,
+    display: "flex",
+    justifyContent: "center"
+  },
+
+  title: {
+    margin: 0
+  },
+
+  desc: {
+    lineHeight: 1.6
+  },
+
+  primaryBtn: {
+    border: "none",
+    color: "#fff",
+    fontWeight: 600,
+    cursor: "pointer"
+  },
+
+  journeySection: {
+    padding: "70px 20px",
+    textAlign: "center"
+  },
+
+  journeyContainer: {
+    maxWidth: 1000,
+    margin: "0 auto",
+    display: "flex",
+    justifyContent: "space-between",
+    gap: 30
+  },
+
+  step: {
+    width: 220,
+    textAlign: "left"
+  },
+
+  circle: {
+    width: 42,
+    height: 42,
+    borderRadius: "50%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontWeight: 700,
+    marginBottom: 12
+  },
+
+  footer: {
+    padding: "30px 20px",
+    textAlign: "center"
+  },
+
+  logo: {
+    width: 240
+  }
 };
