@@ -10,10 +10,7 @@ import CaseBM from "./projects/CaseBM";
 import CaseRemessa from "./projects/CaseRemessa";
 import CaseIPO from "./projects/CaseIPO";
 import CaseControleDelegados from "./projects/CaseControleDelegados";
-import CaseIndice from "./projects/CaseIndice";
-import CaseReconhecimento from "./projects/CaseReconhecimento";
 import CaseCambioImportacao from "./projects/CaseCambioImportacao";
-import CaseInvoice from "./projects/CaseInvoice";
 import CaseMeasurementReport from "./projects/CaseMeasurementReport";
 import CaseCDPortal from "./projects/CaseCDPortal"; // ⭐ NOVO
 
@@ -43,22 +40,14 @@ export default function App() {
       case "controle-de-delegados":
         return <CaseControleDelegados goBack={() => setPage("projects")} />;
 
-      case "indice":
-        return <CaseIndice goBack={() => setPage("projects")} />;
-
-      case "reconhecimento":
-        return <CaseReconhecimento goBack={() => setPage("projects")} />;
-
       case "cambio-importacao":
         return <CaseCambioImportacao goBack={() => setPage("projects")} />;
 
-      case "invoice":
-        return <CaseInvoice goBack={() => setPage("projects")} />;
 
       case "measurement-report":
         return <CaseMeasurementReport goBack={() => setPage("projects")} />;
 
-      case "cd-portal": // ⭐ NOVO
+      case "cd-portal": 
         return <CaseCDPortal goBack={() => setPage("projects")} />;
 
       default:

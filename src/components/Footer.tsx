@@ -1,6 +1,5 @@
 import { useLang } from "../context/LangContext";
 import { useTheme } from "../context/ThemeContext";
-import type { CSSProperties } from "react";
 
 export default function Footer() {
   const { lang } = useLang();
