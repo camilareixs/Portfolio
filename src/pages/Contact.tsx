@@ -9,88 +9,83 @@ export default function Contact() {
 
   const isDark = theme === "dark";
 
-  const bg = isDark ? "#020617" : "#F5F7FB";
-  const text = isDark ? "#E8ECF8" : "#0F172A";
-  const sub = isDark ? "#94A3B8" : "#64748B";
-  const card = isDark ? "#0F172A" : "#FFFFFF";
-  const border = isDark ? "#1E293B" : "#E6EAF2";
-  const accent = "#7D5FFF";
+  const colors = {
+    bg: isDark ? "#070A12" : "#F7F8FC",
+    panel: isDark ? "#0C1220" : "#FFFFFF",
+    text: isDark ? "#EAF0FF" : "#0F172A",
+    sub: isDark ? "#9AA4B2" : "#64748B",
+    border: isDark ? "rgba(255,255,255,0.08)" : "#E6EAF2",
+
+    // NOVA PALETA (mais premium)
+    accent: isDark ? "#4DA3FF" : "#2563EB",
+    accentSoft: isDark ? "rgba(77,163,255,0.15)" : "rgba(37,99,235,0.08)",
+
+    glow: isDark ? "rgba(77,163,255,0.25)" : "rgba(37,99,235,0.15)"
+  };
 
   return (
     <>
-      <section
-        style={{
-          ...styles.section,
-          background: bg,
-          color: text
-        }}
-      >
-        <div style={styles.container}>
+      <section style={{ ...styles.section, background: colors.bg }}>
+        <div style={styles.wrapper}>
+          
+          {/* LEFT */}
+          <div style={styles.left}>
+            <span style={{ ...styles.badge, color: colors.accent }}>
+              {lang === "en" ? "Contact" : "Contato"}
+            </span>
 
-          <span
-            style={{
-              color: accent,
-              fontSize: 12,
-              fontWeight: 700,
-              letterSpacing: 2,
-              textTransform: "uppercase"
-            }}
-          >
-            {lang === "en"
-              ? "Let's Connect"
-              : "Vamos Conversar"}
-          </span>
+            <h1 style={{ ...styles.title, color: colors.text }}>
+              {lang === "en"
+                ? "Let’s build something!"
+                : "Vamos construir algo!"}
+            </h1>
 
-          <h1
-            style={{
-              ...styles.title,
-              color: text
-            }}
-          >
-            {lang === "en"
-              ? "Let's Build Something Meaningful"
-              : "Vamos Construir Algo Relevante"}
-          </h1>
-
-          <p
-            style={{
-              ...styles.subtitle,
-              color: sub
-            }}
-          >
-            {lang === "en"
-              ? "Specialized in Power Platform, Intelligent Automation and Digital Transformation, helping organizations reduce operational effort, increase governance and accelerate business outcomes."
-              : "Especializada em Power Platform, Automação Inteligente e Transformação Digital, ajudando empresas a reduzir esforço operacional, aumentar governança e acelerar resultados de negócio."}
-          </p>
-
-          <div
-            style={{
-              ...styles.contactCard,
-              background: card,
-              border: `1px solid ${border}`
-            }}
-          >
+            <p style={{ ...styles.subtitle, color: colors.sub }}>
+              Power Platform • Automation • Digital Transformation
+            </p>
 
             <div
               style={{
-                width: "100%",
-                textAlign: "center",
-                marginBottom: 8,
-                fontSize: 11,
-                fontWeight: 700,
-                letterSpacing: 2,
-                textTransform: "uppercase",
-                color: accent
+                ...styles.highlightBox,
+                background: colors.accentSoft,
+                border: `1px solid ${colors.border}`
               }}
             >
-              Contact Channels
+              <p style={{ color: colors.text, margin: 0, fontWeight: 500 }}>
+                {lang === "en"
+                  ? "Fast response • Direct communication • Professional inquiries"
+                  : "Resposta rápida • Contato direto • Projetos profissionais"}
+              </p>
             </div>
+          </div>
+
+          {/* RIGHT */}
+          <div
+            style={{
+              ...styles.right,
+              background: colors.panel,
+              border: `1px solid ${colors.border}`,
+              boxShadow: isDark
+                ? `0 0 60px ${colors.glow}`
+                : "0 20px 50px rgba(0,0,0,0.06)"
+            }}
+          >
+            <h3 style={{ color: colors.text, marginBottom: 10 }}>
+              {lang === "en" ? "Start a conversation" : "Iniciar conversa"}
+            </h3>
+
+            <p style={{ color: colors.sub, fontSize: 14, marginBottom: 20 }}>
+              {lang === "en"
+                ? "Choose your preferred channel"
+                : "Escolha o canal de contato"}
+            </p>
 
             <a
               href="mailto:camilalaurindoreis@gmail.com"
               style={{
-                ...styles.contactButton,
-                background: isDark ? "#1E293B" : "#111"
+                ...styles.primaryBtn,
+                background: colors.accent,
+                boxShadow: `0 10px 25px ${colors.glow}`
               }}
             >
               Email
@@ -101,8 +96,9 @@ export default function Contact() {
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                ...styles.contactButton,
-                background: isDark ? "#1E293B" : "#111"
+                ...styles.secondaryBtn,
+                border: `1px solid ${colors.border}`,
+                color: colors.text
               }}
             >
               LinkedIn
@@ -113,15 +109,14 @@ export default function Contact() {
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                ...styles.contactButton,
-                background: isDark ? "#1E293B" : "#111"
+                ...styles.secondaryBtn,
+                border: `1px solid ${colors.border}`,
+                color: colors.text
               }}
             >
               WhatsApp
             </a>
-
           </div>
-
         </div>
       </section>
 
@@ -132,53 +127,72 @@ export default function Contact() {
 
 const styles: Record<string, CSSProperties> = {
   section: {
-    padding: "140px 20px"
+    padding: "120px 20px"
   },
 
-  container: {
-    maxWidth: 900,
+  wrapper: {
+    maxWidth: 1100,
     margin: "auto",
+    display: "grid",
+    gridTemplateColumns: "1.2fr 1fr",
+    gap: 60,
+    alignItems: "center"
+  },
+
+  left: {
     display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    textAlign: "center"
+    flexDirection: "column"
+  },
+
+  badge: {
+    fontSize: 12,
+    fontWeight: 700,
+    letterSpacing: 2,
+    textTransform: "uppercase"
   },
 
   title: {
     fontSize: 56,
-    fontWeight: 700,
-    lineHeight: 1.1,
-    letterSpacing: "-2px",
-    margin: "16px 0 24px"
+    fontWeight: 800,
+    lineHeight: 1.05,
+    margin: "14px 0 18px"
   },
 
   subtitle: {
     fontSize: 18,
-    maxWidth: 760,
-    lineHeight: 1.8,
-    marginBottom: 40
+    lineHeight: 1.7,
+    maxWidth: 520
   },
 
-  contactCard: {
-    width: "100%",
+  highlightBox: {
+    marginTop: 30,
+    padding: 18,
+    borderRadius: 14
+  },
+
+  right: {
     padding: 40,
-    borderRadius: 28,
+    borderRadius: 24,
     display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    gap: 16
+    flexDirection: "column",
+    gap: 14
   },
 
-  contactButton: {
-    minWidth: 180,
-    padding: "16px 28px",
-    borderRadius: 14,
+  primaryBtn: {
+    padding: "14px 18px",
+    borderRadius: 12,
     color: "#fff",
-    textDecoration: "none",
     fontWeight: 700,
-    fontSize: 14,
-    letterSpacing: 1,
-    textTransform: "uppercase",
-    transition: "0.25s ease"
+    textDecoration: "none",
+    textAlign: "center"
+  },
+
+  secondaryBtn: {
+    padding: "14px 18px",
+    borderRadius: 12,
+    fontWeight: 600,
+    textDecoration: "none",
+    textAlign: "center",
+    background: "transparent"
   }
 };

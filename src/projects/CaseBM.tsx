@@ -14,10 +14,11 @@ export default function CaseBM({ goBack }: Props) {
 
   const t = {
     en: {
-      back: "Back to Projects",
-      tag: "Digital Operations Platform",
-      title: "Payment Cell Operations & Workflow Automation Ecosystem",
-      desc: "Enterprise-grade operational platform built on Microsoft Power Platform responsible for managing the internal payment cell lifecycle, including request intake, validation, approval flows, and controlled execution of financial operations across business units with traceability and governance.",
+      tag: "Environmental Operations Platform",
+
+title: "Measurement Management & Supplier Governance Platform",
+
+desc: "Enterprise platform developed to manage environmental service measurements, supplier interactions and financial validation workflows. The solution centralizes the entire lifecycle of measurement reports, from service registration and approval routing to invoice submission, payment validation and operational tracking, replacing fragmented email-based processes with a structured and auditable workflow.",
 
       video: "Platform Walkthrough",
       arch: "Architecture",
@@ -26,10 +27,11 @@ export default function CaseBM({ goBack }: Props) {
       integration: "Payment Lifecycle Flow"
     },
     pt: {
-      back: "Voltar aos Projetos",
-      tag: "Plataforma de Operações Digitais",
-      title: "Ecossistema de Automação e Gestão da Célula de Pagamentos",
-      desc: "Plataforma operacional de nível enterprise construída em Power Platform responsável pela gestão do ciclo completo da célula de pagamentos interna, incluindo abertura de solicitações, validação, fluxos de aprovação e execução controlada de operações financeiras entre áreas com rastreabilidade e governança.",
+      tag: "Plataforma de Operações Ambientais",
+
+      title: "Plataforma de Gestão de Medições e Governança de Fornecedores",
+      
+      desc: "Plataforma corporativa desenvolvida para gerenciar medições de serviços ambientais, interação com fornecedores e fluxos de validação financeira. A solução centraliza todo o ciclo de vida dos boletins de medição, desde o registro dos serviços e aprovações até o envio de notas fiscais, validação de pagamentos e acompanhamento operacional, substituindo processos descentralizados baseados em e-mails por um fluxo estruturado e auditável.",
 
       video: "Demonstração da Plataforma",
       arch: "Arquitetura",
@@ -152,12 +154,21 @@ export default function CaseBM({ goBack }: Props) {
             >
               <Side
                 title="CONTEXT"
-                items={[
-                  "Payment Operations Layer",
-                  "1200+ Users",
-                  "Financial Workflow Control",
-                  "Enterprise Governance System"
-                ]}
+                items={
+                  lang === "pt"
+                    ? [
+                      "Relatórios de Medição",
+                      "Fluxos do Portal do Fornecedor",
+                      "Validação Financeira",
+                      "Dataverse + Automações"
+                      ]
+                    : [
+                      "Measurement Reports",
+ "Supplier Portal Flows",
+ "Financial Validation",
+ "Dataverse + Automations"
+                      ]
+                }
                 c={c}
               />
             </aside>
@@ -195,16 +206,21 @@ export default function CaseBM({ goBack }: Props) {
                     overflowX: "auto"
                   }}
                 >
-{`IF Payment Request = Submitted
- → Validate Data
- → Route to Approver
-
-IF Approved
- → Execute Payment
- → Log Transaction
-
-IF Rejected
- → Notify Requester`}
+{`Supplier Service Performed
+          ↓
+Measurement Report Created
+          ↓
+Approval Workflow
+          ↓
+Supplier Notification
+          ↓
+Invoice Submission
+          ↓
+Financial Validation
+          ↓
+Payment Processing
+          ↓
+Status Update & Audit Trail`}
                 </pre>
               </Card>
 
