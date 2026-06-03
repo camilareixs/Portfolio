@@ -82,8 +82,8 @@ export default function Home({ goProjects }: Props) {
           background: sectionBg,
           flexDirection: isMobile ? "column" : "row",
           justifyContent: "space-between",
-          alignItems: isMobile ? "center" : "flex-start",
-          padding: isMobile ? "60px 20px" : "80px 80px 40px",
+          alignItems: isMobile ? "flex-start" : "center",
+          padding: isMobile ? "60px 20px" : "80px 80px 50px",
           gap: isMobile ? 30 : 80
         }}
       >
@@ -98,7 +98,7 @@ export default function Home({ goProjects }: Props) {
               fontWeight: 600
             }}
           >
-            
+           
           </div>
 
           <h1
@@ -123,15 +123,23 @@ export default function Home({ goProjects }: Props) {
             {text.desc}
           </p>
 
+          {/* BOTÃO FIXO (NÃO ESTICA MAIS) */}
           <button
             onClick={goProjects}
             style={{
-              ...styles.primaryBtn,
               background: primary,
-              padding: isMobile ? "12px 18px" : "10px 16px",
+              color: "#fff",
+              fontWeight: 600,
+              cursor: "pointer",
+              border: "none",
+              borderRadius: 10,
+              padding: "10px 18px",
               fontSize: 13,
-              width: isMobile ? "100%" : "auto",
-              borderRadius: 10
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "fit-content",
+              minWidth: 140
             }}
           >
             {text.viewProjects}
@@ -150,20 +158,25 @@ export default function Home({ goProjects }: Props) {
       <section
         style={{
           ...styles.journeySection,
-          background: sectionBg
+          background: sectionBg,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center"
         }}
       >
         <h2
           style={{
             ...styles.journeyTitle,
+            marginBottom: 50,
             color: textColor,
-            fontSize: isMobile ? 22 : 34
+            fontSize: isMobile ? 22 : 34,
+            marginTop: 0
           }}
         >
           {text.processTitle}
         </h2>
 
-        {/* MOBILE - VERTICAL LIST */}
+        {/* MOBILE */}
         {isMobile ? (
           <div
             style={{
@@ -171,7 +184,7 @@ export default function Home({ goProjects }: Props) {
               flexDirection: "column",
               gap: 16,
               maxWidth: 520,
-              margin: "0 auto"
+              width: "100%"
             }}
           >
             {journey.map((step, i) => (
@@ -198,8 +211,7 @@ export default function Home({ goProjects }: Props) {
                     ...styles.circle,
                     background: primary,
                     minWidth: 42,
-                    minHeight: 42,
-                    fontSize: 14
+                    minHeight: 42
                   }}
                 >
                   {i + 1}
@@ -209,7 +221,6 @@ export default function Home({ goProjects }: Props) {
                   <h3 style={{ color: textColor, margin: 0, fontSize: 16 }}>
                     {step.title}
                   </h3>
-
                   <p
                     style={{
                       color: descColor,
@@ -253,7 +264,7 @@ export default function Home({ goProjects }: Props) {
         )}
       </section>
 
-      {/* FOOTER FINAL */}
+      {/* FOOTER */}
       <footer
         style={{
           ...styles.footer,
@@ -268,31 +279,23 @@ export default function Home({ goProjects }: Props) {
             listStyle: "none",
             padding: 0,
             margin: 0,
-            flexWrap: "wrap",
-            justifyContent: "center"
+            justifyContent: "center",
+            flexWrap: "wrap"
           }}
         >
           {["Home", "About", "Projects", "Contact"].map((link) => (
-            <li
-              key={link}
-              style={{
-                cursor: "pointer",
-                fontSize: 13,
-                opacity: 0.85
-              }}
-            >
+            <li key={link} style={{ fontSize: 13, opacity: 0.85 }}>
               {link}
             </li>
           ))}
         </ul>
 
-        {/* CONTATO EM UMA LINHA */}
         <div
           style={{
+            marginTop: 10,
             fontSize: 12,
             opacity: 0.75,
-            textAlign: "center",
-            marginTop: 10
+            textAlign: "center"
           }}
         >
           <div>
@@ -330,13 +333,6 @@ const styles: Record<string, CSSProperties> = {
 
   desc: {
     lineHeight: 1.6
-  },
-
-  primaryBtn: {
-    border: "none",
-    color: "#fff",
-    fontWeight: 600,
-    cursor: "pointer"
   },
 
   journeySection: {
