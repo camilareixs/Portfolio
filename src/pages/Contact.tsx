@@ -7,52 +7,117 @@ export default function Contact() {
   const { lang } = useLang();
   const { theme } = useTheme();
 
-  const bg = theme === "light" ? "#F7F4F2" : "#121212";
-  const text = theme === "light" ? "#111" : "#EEE";
-  const card = theme === "light" ? "#fff" : "#1E1E1E";
+  const isDark = theme === "dark";
+
+  const bg = isDark ? "#020617" : "#F5F7FB";
+  const text = isDark ? "#E8ECF8" : "#0F172A";
+  const sub = isDark ? "#94A3B8" : "#64748B";
+  const card = isDark ? "#0F172A" : "#FFFFFF";
+  const border = isDark ? "#1E293B" : "#E6EAF2";
+  const accent = "#7D5FFF";
 
   return (
     <>
-      <section style={{ ...styles.section, background: bg, color: text }}>
+      <section
+        style={{
+          ...styles.section,
+          background: bg,
+          color: text
+        }}
+      >
         <div style={styles.container}>
-          
-          <h1 style={styles.title}>
+
+          <span
+            style={{
+              color: accent,
+              fontSize: 12,
+              fontWeight: 700,
+              letterSpacing: 2,
+              textTransform: "uppercase"
+            }}
+          >
             {lang === "en"
-              ? "Let's Work Together"
-              : "Vamos Trabalhar Juntos"}
+              ? "Let's Connect"
+              : "Vamos Conversar"}
+          </span>
+
+          <h1
+            style={{
+              ...styles.title,
+              color: text
+            }}
+          >
+            {lang === "en"
+              ? "Let's Build Something Meaningful"
+              : "Vamos Construir Algo Relevante"}
           </h1>
 
-          <p style={styles.subtitle}>
+          <p
+            style={{
+              ...styles.subtitle,
+              color: sub
+            }}
+          >
             {lang === "en"
-              ? "I'm open to opportunities in Power Platform, RPA and automation projects."
-              : "Estou aberta a oportunidades em Power Platform, RPA e projetos de automação."}
+              ? "Specialized in Power Platform, Intelligent Automation and Digital Transformation, helping organizations reduce operational effort, increase governance and accelerate business outcomes."
+              : "Especializada em Power Platform, Automação Inteligente e Transformação Digital, ajudando empresas a reduzir esforço operacional, aumentar governança e acelerar resultados de negócio."}
           </p>
 
-          <div style={{ ...styles.contactCard, background: card }}>
+          <div
+            style={{
+              ...styles.contactCard,
+              background: card,
+              border: `1px solid ${border}`
+            }}
+          >
+
+            <div
+              style={{
+                width: "100%",
+                textAlign: "center",
+                marginBottom: 8,
+                fontSize: 11,
+                fontWeight: 700,
+                letterSpacing: 2,
+                textTransform: "uppercase",
+                color: accent
+              }}
+            >
+              Contact Channels
+            </div>
 
             <a
               href="mailto:camilalaurindoreis@gmail.com"
-              style={{ ...styles.contactButton, background: "#7D5FFF" }}
+              style={{
+                ...styles.contactButton,
+                background: isDark ? "#1E293B" : "#111"
+              }}
             >
-              📧 {lang === "en" ? "Send Email" : "Enviar Email"}
+              Email
             </a>
 
             <a
               href="https://www.linkedin.com/in/camilalaurindoreis/"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ ...styles.contactButton, background: "#0A66C2" }}
+              style={{
+                ...styles.contactButton,
+                background: isDark ? "#1E293B" : "#111"
+              }}
             >
-              💼 LinkedIn
+              LinkedIn
             </a>
 
             <a
               href="https://wa.me/5511988033775"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ ...styles.contactButton, background: "#25D366" }}
+              style={{
+                ...styles.contactButton,
+                background: isDark ? "#1E293B" : "#111"
+              }}
             >
-              💬 WhatsApp
+              WhatsApp
             </a>
 
           </div>
@@ -75,39 +140,45 @@ const styles: Record<string, CSSProperties> = {
     margin: "auto",
     display: "flex",
     flexDirection: "column",
-    gap: 24,
     alignItems: "center",
     textAlign: "center"
   },
 
   title: {
-    fontSize: 42,
-    margin: 0
+    fontSize: 56,
+    fontWeight: 700,
+    lineHeight: 1.1,
+    letterSpacing: "-2px",
+    margin: "16px 0 24px"
   },
 
   subtitle: {
     fontSize: 18,
-    maxWidth: 600
+    maxWidth: 760,
+    lineHeight: 1.8,
+    marginBottom: 40
   },
 
   contactCard: {
-    marginTop: 30,
+    width: "100%",
     padding: 40,
-    borderRadius: 20,
+    borderRadius: 28,
     display: "flex",
-    gap: 20,
     flexWrap: "wrap",
-    justifyContent: "center"
+    justifyContent: "center",
+    gap: 16
   },
 
   contactButton: {
+    minWidth: 180,
     padding: "16px 28px",
     borderRadius: 14,
     color: "#fff",
-    fontWeight: 700,
     textDecoration: "none",
-    fontSize: 16,
-    transition: "0.3s",
-    minWidth: 180
+    fontWeight: 700,
+    fontSize: 14,
+    letterSpacing: 1,
+    textTransform: "uppercase",
+    transition: "0.25s ease"
   }
 };

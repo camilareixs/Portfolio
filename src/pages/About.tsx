@@ -65,7 +65,6 @@ export default function About() {
     {
       title: "Data & Integrations",
       items: [
-        "SAP Integrations",
         "REST APIs",
         "XML",
         "SQL",

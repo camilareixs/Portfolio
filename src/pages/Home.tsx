@@ -21,8 +21,8 @@ export default function Home({ goProjects }: Props) {
 
     desc:
       lang === "en"
-        ? "Transforming complex operational workflows into scalable digital solutions through Power Platform, automation and enterprise integrations."
-        : "Transformando fluxos operacionais complexos em soluções digitais escaláveis através de Power Platform, automação e integrações corporativas.",
+        ? "Transforming operational workflows into scalable digital solutions through Power Platform, automation and enterprise integrations."
+        : "Transformando fluxos operacionais em soluções digitais escaláveis através de Power Platform, automação e integrações corporativas.",
 
     viewProjects: lang === "en" ? "View Projects" : "Ver Projetos",
     downloadCV: lang === "en" ? "Download CV" : "Baixar CV",
