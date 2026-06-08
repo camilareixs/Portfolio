@@ -211,13 +211,13 @@ useEffect(() => {
                   : "The solution was designed to support distributed operations, combining operational applications with a robust data and automation layer. Each component plays a clear role within the global incident flow, allowing information to move across areas, countries and systems without losing consistency. The result is an architecture that not only supports the business, but structures it."}
               </Card>
 
-              <Card title={tx.automation} c={c}>
+              <Card title={tx.automation} c={c} isMobile={isMobile}>
                 {lang === "pt"
                   ? "Minha atuação não foi na criação inicial da plataforma, mas na sua evolução contínua dentro de um ambiente já em produção e altamente dependente do negócio. Trabalhei na melhoria de fluxos existentes, estabilização de automações críticas e evolução de integrações globais. Isso envolveu lidar com cenários reais, dados inconsistentes e processos já utilizados por múltiplas regiões, onde qualquer ajuste precisava ser preciso, seguro e escalável."
                   : "My role was not building the platform from scratch, but evolving it within an already active and business-critical environment. I worked on improving existing flows, stabilizing critical automations and refining global integrations. This meant dealing with real scenarios, inconsistent data and processes already used across multiple regions, where every change had to be precise, safe and scalable."}
               </Card>
 
-              <Card title={tx.integration} c={c}>
+              <Card title={tx.integration} c={c} isMobile={isMobile}>
                 <p style={{ marginBottom: 15 }}>
                   {lang === "pt"
                     ? "Um dos pontos mais críticos da plataforma é a integração com o Global Incident Database (GID). Cada incidente precisa ser transformado dinamicamente em uma estrutura padronizada, respeitando regras complexas e variações entre regiões. Abaixo está um recorte real dessa lógica."
@@ -246,7 +246,7 @@ first(body('Identify_Main_Cause'))['lower_root'])
                 </pre>
               </Card>
 
-              <Card title={tx.impact} c={c}>
+              <Card title={tx.impact} c={c} isMobile={isMobile}>
                 {lang === "pt"
                   ? "O impacto vai além da tecnologia. A evolução da plataforma reduziu dependências manuais, aumentou a confiabilidade dos dados e trouxe maior previsibilidade para a governança de incidentes. Em escala global, isso se traduz em decisões mais rápidas, maior rastreabilidade e uma operação mais madura, sustentada por um sistema que precisa funcionar com consistência todos os dias."
                   : "The impact goes beyond technology. The platform evolution reduced manual dependencies, increased data reliability and brought greater predictability to incident governance. At global scale, this translates into faster decisions, better traceability and a more mature operation supported by a system that must perform consistently every day."}

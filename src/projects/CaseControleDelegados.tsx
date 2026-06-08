@@ -1,6 +1,7 @@
 import { useTheme } from "../context/ThemeContext";
 import { useLang } from "../context/LangContext";
 import Footer from "../components/Footer";
+import { useState, useEffect } from "react";
 
 interface Props {
   goBack: () => void;
@@ -9,6 +10,18 @@ interface Props {
 export default function CaseControleDelegados({ goBack }: Props) {
   const { theme } = useTheme();
   const { lang } = useLang();
+
+  const [isMobile, setIsMobile] = useState(false);
+
+useEffect(() => {
+  const check = () => setIsMobile(window.innerWidth < 768);
+
+  check();
+
+  window.addEventListener("resize", check);
+
+  return () => window.removeEventListener("resize", check);
+}, []);
 
   const dark = theme === "dark";
 
@@ -58,7 +71,7 @@ export default function CaseControleDelegados({ goBack }: Props) {
       <section
         style={{
           background: c.bg,
-          padding: "120px 20px",
+          padding: isMobile ? "90px 16px" : "120px 20px",
           overflowX: "hidden"
         }}
       >
@@ -85,7 +98,7 @@ export default function CaseControleDelegados({ goBack }: Props) {
               background: c.card,
               border: `1px solid ${c.border}`,
               borderRadius: 20,
-              padding: 60,
+              padding: isMobile ? 24 : 60,
               marginBottom: 60
             }}
           >
@@ -93,13 +106,20 @@ export default function CaseControleDelegados({ goBack }: Props) {
               {tx.tag.toUpperCase()}
             </span>
 
-            <h1 style={{ fontSize: 48, margin: "20px 0", color: c.text }}>
+            <h1
+  style={{
+    fontSize: isMobile ? 30 : 48,
+    margin: "20px 0",
+    color: c.text,
+    lineHeight: 1.15
+  }}
+>
               {tx.title}
             </h1>
 
             <p
               style={{
-                fontSize: 18,
+                fontSize: isMobile ? 15 : 18,
                 color: c.sub,
                 maxWidth: 900,
                 lineHeight: 1.8
@@ -115,7 +135,7 @@ export default function CaseControleDelegados({ goBack }: Props) {
               background: c.card,
               border: `1px solid ${c.border}`,
               borderRadius: 20,
-              padding: 30,
+              padding: isMobile ? 16 : 30,
               marginBottom: 60
             }}
           >
@@ -126,7 +146,7 @@ export default function CaseControleDelegados({ goBack }: Props) {
             <div
               style={{
                 width: "100%",
-                height: 420,
+                height: isMobile ? 220 : 420,
                 borderRadius: 16,
                 overflow: "hidden"
               }}
@@ -150,8 +170,11 @@ export default function CaseControleDelegados({ goBack }: Props) {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "minmax(0,360px) minmax(0,1fr)",
-              gap: 40
+              gridTemplateColumns: isMobile
+  ? "1fr"
+  : "minmax(0,360px) minmax(0,1fr)",
+
+gap: isMobile ? 20 : 40
             }}
           >
 
@@ -161,7 +184,7 @@ export default function CaseControleDelegados({ goBack }: Props) {
                 background: c.card,
                 border: `1px solid ${c.border}`,
                 borderRadius: 20,
-                padding: 30,
+                padding: isMobile ? 20 : 30,
                 height: "fit-content",
                 minWidth: 0
               }}
@@ -188,19 +211,19 @@ export default function CaseControleDelegados({ goBack }: Props) {
               }}
             >
 
-              <Card title={tx.arch} c={c}>
+<Card title={tx.arch} c={c} isMobile={isMobile}>
                 {lang === "pt"
                   ? "A solução foi construída em Power Platform utilizando Power Apps para centralização operacional, Dataverse como camada estruturada de dados e Power Automate para automação de cálculos, geração de documentos e distribuição de relatórios. A arquitetura suporta controle completo do ciclo de delegação de expatriados inbound entre operações regionais."
                   : "The solution was built on Power Platform using Power Apps for operational centralization, Dataverse as the structured data layer and Power Automate for calculation automation, document generation and report distribution. The architecture supports full lifecycle management of inbound expatriate delegation operations across regional units."}
               </Card>
 
-              <Card title={tx.automation} c={c}>
+              <Card title={tx.automation} c={c} isMobile={isMobile}>
                 {lang === "pt"
                   ? "Minha atuação envolveu evolução da plataforma, automação de regras operacionais e melhoria da experiência de uso para processos críticos de mobilidade. O trabalho incluiu implementação de cálculos automatizados de direito a férias, geração dinâmica de PDFs e integração de fluxos de comunicação entre stakeholders."
                   : "My role involved platform evolution, operational rule automation and usability improvements for critical mobility processes. The work included automated vacation entitlement calculations, dynamic PDF generation and integration of communication workflows between stakeholders."}
               </Card>
 
-              <Card title={tx.integration} c={c}>
+              <Card title={tx.integration} c={c} isMobile={isMobile}>
                 <p style={{ marginBottom: 15 }}>
                   {lang === "pt"
                     ? "Fluxo operacional responsável por controlar períodos de delegação, validar regras de negócio e automatizar geração de documentação."
@@ -211,10 +234,12 @@ export default function CaseControleDelegados({ goBack }: Props) {
                   style={{
                     background: "#020617",
                     color: "#E5E7EB",
-                    padding: 20,
+                    padding: isMobile ? 14 : 20,
                     borderRadius: 12,
-                    fontSize: 12,
-                    overflowX: "auto"
+                    fontSize: isMobile ? 10 : 12,
+                    overflowX: "auto",
+                    whiteSpace: "pre-wrap",
+                    wordBreak: "break-word"
                   }}
                 >
 {`REGISTER Delegate
@@ -225,7 +250,7 @@ export default function CaseControleDelegados({ goBack }: Props) {
                 </pre>
               </Card>
 
-              <Card title={tx.impact} c={c}>
+              <Card title={tx.impact} c={c} isMobile={isMobile}>
                 {lang === "pt"
                   ? "A plataforma eliminou custos recorrentes do sistema legado, aumentou a confiabilidade operacional e trouxe maior controle sobre processos de mobilidade internacional. A automação reduziu dependências manuais, melhorou rastreabilidade e forneceu relatórios consistentes para tomada de decisão."
                   : "The platform eliminated recurring legacy system costs, increased operational reliability and improved control over international mobility processes. Automation reduced manual dependencies, improved traceability and delivered consistent reporting for decision-making."}
@@ -259,14 +284,14 @@ function Side({ title, items, c }: any) {
   );
 }
 
-function Card({ title, children, c }: any) {
+function Card({ title, children, c, isMobile }: any) {
   return (
     <div
       style={{
         background: c.card,
         border: `1px solid ${c.border}`,
         borderRadius: 20,
-        padding: 40,
+        padding: isMobile ? 20 : 40,
         minWidth: 0
       }}
     >

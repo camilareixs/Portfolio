@@ -1,6 +1,7 @@
 import { useTheme } from "../context/ThemeContext";
 import { useLang } from "../context/LangContext";
 import Footer from "../components/Footer";
+import { useState, useEffect } from "react";
 
 interface Props {
   goBack: () => void;
@@ -9,6 +10,18 @@ interface Props {
 export default function CaseCambioImportacao({ goBack }: Props) {
   const { theme } = useTheme();
   const { lang } = useLang();
+
+  const [isMobile, setIsMobile] = useState(false);
+
+useEffect(() => {
+  const check = () => setIsMobile(window.innerWidth < 768);
+
+  check();
+
+  window.addEventListener("resize", check);
+
+  return () => window.removeEventListener("resize", check);
+}, []);
 
   const dark = theme === "dark";
 
@@ -58,7 +71,7 @@ export default function CaseCambioImportacao({ goBack }: Props) {
       <section
         style={{
           background: c.bg,
-          padding: "120px 20px",
+          padding: isMobile ? "90px 16px" : "120px 20px",
           overflowX: "hidden"
         }}
       >
@@ -85,7 +98,7 @@ export default function CaseCambioImportacao({ goBack }: Props) {
               background: c.card,
               border: `1px solid ${c.border}`,
               borderRadius: 20,
-              padding: 60,
+              padding: isMobile ? 24 : 60,
               marginBottom: 60
             }}
           >
@@ -93,13 +106,20 @@ export default function CaseCambioImportacao({ goBack }: Props) {
               {tx.tag.toUpperCase()}
             </span>
 
-            <h1 style={{ fontSize: 48, margin: "20px 0", color: c.text }}>
+            <h1
+  style={{
+    fontSize: isMobile ? 30 : 48,
+    margin: "20px 0",
+    color: c.text,
+    lineHeight: 1.15
+  }}
+>
               {tx.title}
             </h1>
 
             <p
               style={{
-                fontSize: 18,
+                fontSize: isMobile ? 15 : 18,
                 color: c.sub,
                 maxWidth: 900,
                 lineHeight: 1.8
@@ -115,7 +135,7 @@ export default function CaseCambioImportacao({ goBack }: Props) {
               background: c.card,
               border: `1px solid ${c.border}`,
               borderRadius: 20,
-              padding: 30,
+              padding: isMobile ? 16 : 30,
               marginBottom: 60
             }}
           >
@@ -126,7 +146,7 @@ export default function CaseCambioImportacao({ goBack }: Props) {
             <div
               style={{
                 width: "100%",
-                height: 420,
+                height: isMobile ? 220 : 420,
                 borderRadius: 16,
                 overflow: "hidden"
               }}
@@ -150,8 +170,11 @@ export default function CaseCambioImportacao({ goBack }: Props) {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "minmax(0,360px) minmax(0,1fr)",
-              gap: 40
+              gridTemplateColumns: isMobile
+  ? "1fr"
+  : "minmax(0,360px) minmax(0,1fr)",
+
+gap: isMobile ? 20 : 40
             }}
           >
 
@@ -161,7 +184,7 @@ export default function CaseCambioImportacao({ goBack }: Props) {
                 background: c.card,
                 border: `1px solid ${c.border}`,
                 borderRadius: 20,
-                padding: 30,
+                padding: isMobile ? 20 : 30,
                 height: "fit-content",
                 minWidth: 0
               }}
@@ -188,19 +211,19 @@ export default function CaseCambioImportacao({ goBack }: Props) {
               }}
             >
 
-              <Card title={tx.arch} c={c}>
+<Card title={tx.arch} c={c} isMobile={isMobile}>
                 {lang === "pt"
                   ? "A solução foi construída em Power Platform utilizando Power Apps para centralização operacional, SharePoint como camada documental e Power Automate para automações de aprovação, validação e rastreabilidade. A arquitetura suporta diferentes jornadas de pagamento cambial garantindo consistência operacional, controle documental e governança financeira entre múltiplos países e áreas corporativas."
                   : "The solution was built on Power Platform using Power Apps for centralized operations, SharePoint as the document layer and Power Automate for approval, validation and traceability automations. The architecture supports multiple foreign exchange payment journeys ensuring operational consistency, document control and financial governance across countries and corporate teams."}
               </Card>
 
-              <Card title={tx.automation} c={c}>
+              <Card title={tx.automation} c={c} isMobile={isMobile}>
                 {lang === "pt"
                   ? "Minha atuação esteve focada na evolução da plataforma, criação de fluxos automatizados de aprovação, validação de anexos financeiros e melhoria da experiência operacional para áreas solicitantes e times de treasury. O projeto envolveu transformar um processo altamente dependente de emails em um fluxo estruturado, rastreável e escalável."
                   : "My role focused on platform evolution, creation of automated approval flows, validation of financial attachments and improving the operational experience for requesters and treasury teams. The project transformed a highly email-dependent process into a structured, traceable and scalable workflow."}
               </Card>
 
-              <Card title={tx.integration} c={c}>
+              <Card title={tx.integration} c={c} isMobile={isMobile}>
                 <p style={{ marginBottom: 15 }}>
                   {lang === "pt"
                     ? "O fluxo operacional controla todo o ciclo de aprovação das solicitações cambiais desde a criação até a validação final pelo treasury."
@@ -211,10 +234,12 @@ export default function CaseCambioImportacao({ goBack }: Props) {
                   style={{
                     background: "#020617",
                     color: "#E5E7EB",
-                    padding: 20,
+                    padding: isMobile ? 14 : 20,
                     borderRadius: 12,
-                    fontSize: 12,
-                    overflowX: "auto"
+                    fontSize: isMobile ? 10 : 12,
+                    overflowX: "auto",
+                    whiteSpace: "pre-wrap",
+                    wordBreak: "break-word"
                   }}
                 >
 {`CREATE FX Request
@@ -226,7 +251,7 @@ export default function CaseCambioImportacao({ goBack }: Props) {
                 </pre>
               </Card>
 
-              <Card title={tx.impact} c={c}>
+              <Card title={tx.impact} c={c} isMobile={isMobile}>
                 {lang === "pt"
                   ? "A plataforma reduziu dependências manuais entre áreas de negócio e treasury, aumentou a rastreabilidade das aprovações financeiras e trouxe maior previsibilidade operacional para pagamentos de importação. O resultado foi uma operação mais segura, auditável e escalável para processos cambiais em nível regional."
                   : "The platform reduced manual dependencies between business and treasury teams, increased traceability of financial approvals and brought greater operational predictability for import payment processing. The result was a safer, auditable and scalable foreign exchange operation at regional level."}
@@ -260,14 +285,14 @@ function Side({ title, items, c }: any) {
   );
 }
 
-function Card({ title, children, c }: any) {
+function Card({ title, children, c, isMobile }: any) {
   return (
     <div
       style={{
         background: c.card,
         border: `1px solid ${c.border}`,
         borderRadius: 20,
-        padding: 40,
+        padding: isMobile ? 20 : 40,
         minWidth: 0
       }}
     >

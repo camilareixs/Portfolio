@@ -1,6 +1,7 @@
 import { useTheme } from "../context/ThemeContext";
 import { useLang } from "../context/LangContext";
 import Footer from "../components/Footer";
+import { useState, useEffect } from "react";
 
 interface Props {
   goBack: () => void;
@@ -9,6 +10,18 @@ interface Props {
 export default function CaseBM({ goBack }: Props) {
   const { theme } = useTheme();
   const { lang } = useLang();
+
+  const [isMobile, setIsMobile] = useState(false);
+
+useEffect(() => {
+  const check = () => setIsMobile(window.innerWidth < 768);
+
+  check();
+
+  window.addEventListener("resize", check);
+
+  return () => window.removeEventListener("resize", check);
+}, []);
 
   const dark = theme === "dark";
 
@@ -54,7 +67,7 @@ desc: "Enterprise platform developed to manage environmental service measurement
 
   return (
     <>
-      <section style={{ background: c.bg, padding: "120px 20px", overflowX: "hidden" }}>
+      <section style={{ background: c.bg, padding: isMobile ? "90px 16px" : "120px 20px", overflowX: "hidden" }}>
         <div style={{ maxWidth: 1280, margin: "auto" }}>
 
           {/* BACK */}
@@ -78,7 +91,7 @@ desc: "Enterprise platform developed to manage environmental service measurement
               background: c.card,
               border: `1px solid ${c.border}`,
               borderRadius: 20,
-              padding: 60,
+              padding: isMobile ? 24 : 60,
               marginBottom: 60
             }}
           >
@@ -86,11 +99,18 @@ desc: "Enterprise platform developed to manage environmental service measurement
               {tx.tag.toUpperCase()}
             </span>
 
-            <h1 style={{ fontSize: 48, margin: "20px 0", color: c.text }}>
+            <h1
+  style={{
+    fontSize: isMobile ? 30 : 48,
+    margin: "20px 0",
+    color: c.text,
+    lineHeight: 1.15
+  }}
+>
               {tx.title}
             </h1>
 
-            <p style={{ fontSize: 18, color: c.sub, maxWidth: 900, lineHeight: 1.8 }}>
+            <p style={{ fontSize: isMobile ? 15 : 18, color: c.sub, maxWidth: 900, lineHeight: 1.8 }}>
               {tx.desc}
             </p>
           </div>
@@ -101,7 +121,7 @@ desc: "Enterprise platform developed to manage environmental service measurement
               background: c.card,
               border: `1px solid ${c.border}`,
               borderRadius: 20,
-              padding: 30,
+              padding: isMobile ? 16 : 30,
               marginBottom: 60
             }}
           >
@@ -112,7 +132,7 @@ desc: "Enterprise platform developed to manage environmental service measurement
             <div
               style={{
                 width: "100%",
-                height: 420,
+                height: isMobile ? 220 : 420,
                 borderRadius: 16,
                 overflow: "hidden"
               }}
@@ -136,8 +156,11 @@ desc: "Enterprise platform developed to manage environmental service measurement
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "minmax(0,360px) minmax(0,1fr)",
-              gap: 40
+              gridTemplateColumns: isMobile
+  ? "1fr"
+  : "minmax(0,360px) minmax(0,1fr)",
+
+gap: isMobile ? 20 : 40
             }}
           >
 
@@ -147,7 +170,7 @@ desc: "Enterprise platform developed to manage environmental service measurement
                 background: c.card,
                 border: `1px solid ${c.border}`,
                 borderRadius: 20,
-                padding: 30,
+                padding: isMobile ? 20 : 30,
                 height: "fit-content",
                 minWidth: 0
               }}
@@ -183,27 +206,29 @@ desc: "Enterprise platform developed to manage environmental service measurement
               }}
             >
 
-              <Card title={tx.arch} c={c}>
+<Card title={tx.arch} c={c} isMobile={isMobile}>
                 {lang === "pt"
                   ? "A arquitetura foi desenhada para suportar um fluxo financeiro crítico, utilizando Power Platform com Dataverse como base central, Power Apps para operação e Power Automate para orquestração de aprovações, validações e execução controlada de pagamentos entre áreas."
                   : "The architecture was designed to support a critical financial workflow using Power Platform with Dataverse as the core data layer, Power Apps for operations and Power Automate orchestrating approvals, validations and controlled payment execution across business units."}
               </Card>
 
-              <Card title={tx.automation} c={c}>
+              <Card title={tx.automation} c={c} isMobile={isMobile}>
                 {lang === "pt"
                   ? "Responsável pela engenharia de automações de pagamento, incluindo regras de validação, roteamento de aprovações, tratamento de exceções e manutenção de estabilidade em ambiente produtivo crítico."
                   : "Responsible for payment automation engineering, including validation rules, approval routing, exception handling and maintaining stability in a critical production environment."}
               </Card>
 
-              <Card title={tx.integration} c={c}>
+              <Card title={tx.integration} c={c} isMobile={isMobile}>
                 <pre
                   style={{
                     background: "#020617",
                     color: "#E5E7EB",
-                    padding: 20,
+                    padding: isMobile ? 14 : 20,
                     borderRadius: 12,
-                    fontSize: 12,
-                    overflowX: "auto"
+                    fontSize: isMobile ? 10 : 12,
+                    overflowX: "auto",
+                    whiteSpace: "pre-wrap",
+                    wordBreak: "break-word"
                   }}
                 >
 {`Supplier Service Performed
@@ -224,7 +249,7 @@ Status Update & Audit Trail`}
                 </pre>
               </Card>
 
-              <Card title={tx.impact} c={c}>
+              <Card title={tx.impact} c={c} isMobile={isMobile}>
                 {lang === "pt"
                   ? "Redução de risco operacional no fluxo de pagamentos, eliminação de controle manual via planilhas e aumento de governança e rastreabilidade nas operações financeiras."
                   : "Reduced operational risk in payment workflows, elimination of manual spreadsheet tracking and improved governance and traceability in financial operations."}
@@ -255,14 +280,14 @@ function Side({ title, items, c }: any) {
   );
 }
 
-function Card({ title, children, c }: any) {
+function Card({ title, children, c, isMobile }: any) {
   return (
     <div
       style={{
         background: c.card,
         border: `1px solid ${c.border}`,
         borderRadius: 20,
-        padding: 40,
+        padding: isMobile ? 20 : 40,
         minWidth: 0
       }}
     >

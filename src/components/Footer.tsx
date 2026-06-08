@@ -20,13 +20,13 @@ export default function Footer() {
     >
       <p>
         {lang === "en"
-          ? "© 2026 Camila Reis. All rights reserved."
-          : "© 2026 Camila Reis. Todos os direitos reservados."}
+          ? "camilalaurindoreis@gmail.com"
+          : "camilalaurindoreis@gmail.com"}
       </p>
       <p>
         {lang === "en"
-          ? "camilalaurindoreis@gmail.com | +55 11 98803-3775"
-          : "camilalaurindoreis@gmail.com | +55 11 98803-3775"}
+          ? "+55 11 98803-3775"
+          : "+55 11 98803-3775"}
       </p>
     
     </footer>

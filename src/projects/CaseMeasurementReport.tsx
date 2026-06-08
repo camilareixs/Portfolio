@@ -1,6 +1,7 @@
 import { useTheme } from "../context/ThemeContext";
 import { useLang } from "../context/LangContext";
 import Footer from "../components/Footer";
+import { useState, useEffect } from "react";
 
 interface Props {
   goBack: () => void;
@@ -9,6 +10,18 @@ interface Props {
 export default function CaseMeasurementReport({ goBack }: Props) {
   const { theme } = useTheme();
   const { lang } = useLang();
+
+  const [isMobile, setIsMobile] = useState(false);
+
+useEffect(() => {
+  const check = () => setIsMobile(window.innerWidth < 768);
+
+  check();
+
+  window.addEventListener("resize", check);
+
+  return () => window.removeEventListener("resize", check);
+}, []);
 
   const dark = theme === "dark";
 
@@ -58,7 +71,7 @@ export default function CaseMeasurementReport({ goBack }: Props) {
       <section
         style={{
           background: c.bg,
-          padding: "120px 20px",
+          padding: isMobile ? "90px 16px" : "120px 20px",
           overflowX: "hidden"
         }}
       >
@@ -85,7 +98,7 @@ export default function CaseMeasurementReport({ goBack }: Props) {
               background: c.card,
               border: `1px solid ${c.border}`,
               borderRadius: 20,
-              padding: 60,
+              padding: isMobile ? 24 : 60,
               marginBottom: 60
             }}
           >
@@ -93,13 +106,20 @@ export default function CaseMeasurementReport({ goBack }: Props) {
               {tx.tag.toUpperCase()}
             </span>
 
-            <h1 style={{ fontSize: 48, margin: "20px 0", color: c.text }}>
+            <h1
+  style={{
+    fontSize: isMobile ? 30 : 48,
+    margin: "20px 0",
+    color: c.text,
+    lineHeight: 1.15
+  }}
+>
               {tx.title}
             </h1>
 
             <p
               style={{
-                fontSize: 18,
+                fontSize: isMobile ? 15 : 18,
                 color: c.sub,
                 maxWidth: 900,
                 lineHeight: 1.8
@@ -115,7 +135,7 @@ export default function CaseMeasurementReport({ goBack }: Props) {
               background: c.card,
               border: `1px solid ${c.border}`,
               borderRadius: 20,
-              padding: 30,
+              padding: isMobile ? 16 : 30,
               marginBottom: 60
             }}
           >
@@ -126,7 +146,7 @@ export default function CaseMeasurementReport({ goBack }: Props) {
             <div
               style={{
                 width: "100%",
-                height: 420,
+                height: isMobile ? 220 : 420,
                 borderRadius: 16,
                 overflow: "hidden"
               }}
@@ -150,8 +170,11 @@ export default function CaseMeasurementReport({ goBack }: Props) {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "minmax(0,360px) minmax(0,1fr)",
-              gap: 40
+              gridTemplateColumns: isMobile
+  ? "1fr"
+  : "minmax(0,360px) minmax(0,1fr)",
+
+gap: isMobile ? 20 : 40
             }}
           >
 
@@ -161,7 +184,7 @@ export default function CaseMeasurementReport({ goBack }: Props) {
                 background: c.card,
                 border: `1px solid ${c.border}`,
                 borderRadius: 20,
-                padding: 30,
+                padding: isMobile ? 20 : 30,
                 height: "fit-content",
                 minWidth: 0
               }}
@@ -188,19 +211,19 @@ export default function CaseMeasurementReport({ goBack }: Props) {
               }}
             >
 
-              <Card title={tx.arch} c={c}>
+<Card title={tx.arch} c={c} isMobile={isMobile}>
                 {lang === "pt"
                   ? "A arquitetura combina aplicações Power Apps, automações Power Automate, banco relacional em Dataverse e robôs UiPath integrados ao SAP. A solução foi desenhada para suportar operações financeiras distribuídas, centralizando validações de faturamento, sincronização de pedidos de compra e consolidação de dados operacionais em uma única camada de governança."
                   : "The architecture combines Power Apps applications, Power Automate workflows, Dataverse relational structures and UiPath robots integrated with SAP. The solution was designed to support distributed financial operations by centralizing billing validations, purchase order synchronization and operational data consolidation into a single governance layer."}
               </Card>
 
-              <Card title={tx.automation} c={c}>
+              <Card title={tx.automation} c={c} isMobile={isMobile}>
                 {lang === "pt"
                   ? "Minha atuação envolveu evolução da plataforma, construção de fluxos operacionais, automações financeiras e integração entre Power Platform, SAP e UiPath. Trabalhei na estabilização de processos críticos de measurement report, criação de mecanismos de sincronização automatizada e melhoria da rastreabilidade operacional para times financeiros e fornecedores."
                   : "My role involved platform evolution, financial workflow automation and integration between Power Platform, SAP and UiPath. I worked on stabilizing critical measurement report processes, creating automated synchronization mechanisms and improving operational traceability for finance teams and suppliers."}
               </Card>
 
-              <Card title={tx.integration} c={c}>
+              <Card title={tx.integration} c={c} isMobile={isMobile}>
                 <p style={{ marginBottom: 15 }}>
                   {lang === "pt"
                     ? "O fluxo automatizado integra validações operacionais, sincronização SAP e processamento financeiro de fornecedores."
@@ -211,10 +234,12 @@ export default function CaseMeasurementReport({ goBack }: Props) {
                   style={{
                     background: "#020617",
                     color: "#E5E7EB",
-                    padding: 20,
+                    padding: isMobile ? 14 : 20,
                     borderRadius: 12,
-                    fontSize: 12,
-                    overflowX: "auto"
+                    fontSize: isMobile ? 10 : 12,
+                    overflowX: "auto",
+                    whiteSpace: "pre-wrap",
+                    wordBreak: "break-word"
                   }}
                 >
 {`EXTRACT SAP DATA
@@ -226,7 +251,7 @@ export default function CaseMeasurementReport({ goBack }: Props) {
                 </pre>
               </Card>
 
-              <Card title={tx.impact} c={c}>
+              <Card title={tx.impact} c={c} isMobile={isMobile}>
                 {lang === "pt"
                   ? "A plataforma reduziu esforço manual em validações financeiras, aumentou a confiabilidade dos dados sincronizados com SAP e trouxe maior rastreabilidade sobre operações de faturamento de fornecedores. A integração entre RPA e Power Platform permitiu escalar processos críticos financeiros mantendo governança, visibilidade operacional e redução de tarefas repetitivas."
                   : "The platform reduced manual effort in financial validations, increased reliability of SAP synchronized data and improved traceability over supplier billing operations. The integration between RPA and Power Platform enabled scalable financial processes while maintaining governance, operational visibility and reduction of repetitive tasks."}
@@ -260,14 +285,14 @@ function Side({ title, items, c }: any) {
   );
 }
 
-function Card({ title, children, c }: any) {
+function Card({ title, children, c, isMobile }: any) {
   return (
     <div
       style={{
         background: c.card,
         border: `1px solid ${c.border}`,
         borderRadius: 20,
-        padding: 40,
+        padding: isMobile ? 20 : 40,
         minWidth: 0
       }}
     >

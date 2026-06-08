@@ -1,6 +1,7 @@
 import { useTheme } from "../context/ThemeContext";
 import { useLang } from "../context/LangContext";
 import Footer from "../components/Footer";
+import { useState, useEffect } from "react";
 
 interface Props {
   goBack: () => void;
@@ -9,6 +10,18 @@ interface Props {
 export default function CaseCDPortal({ goBack }: Props) {
   const { theme } = useTheme();
   const { lang } = useLang();
+
+  const [isMobile, setIsMobile] = useState(false);
+
+useEffect(() => {
+  const check = () => setIsMobile(window.innerWidth < 768);
+
+  check();
+
+  window.addEventListener("resize", check);
+
+  return () => window.removeEventListener("resize", check);
+}, []);
 
   const dark = theme === "dark";
 
@@ -58,7 +71,7 @@ export default function CaseCDPortal({ goBack }: Props) {
 
   return (
     <>
-      <section style={{ background: c.bg, padding: "120px 20px", overflowX: "hidden" }}>
+      <section style={{ background: c.bg, padding: isMobile ? "90px 16px" : "120px 20px", overflowX: "hidden" }}>
         <div style={{ maxWidth: 1280, margin: "auto" }}>
           <button
             onClick={goBack}
@@ -79,7 +92,7 @@ export default function CaseCDPortal({ goBack }: Props) {
               background: c.card,
               border: `1px solid ${c.border}`,
               borderRadius: 20,
-              padding: 60,
+              padding: isMobile ? 24 : 60,
               marginBottom: 60
             }}
           >
@@ -104,11 +117,18 @@ export default function CaseCDPortal({ goBack }: Props) {
                 {tx.tag}
               </span>
 
-              <h1 style={{ fontSize: 48, margin: "20px 0", color: c.text }}>
+              <h1
+  style={{
+    fontSize: isMobile ? 30 : 48,
+    margin: "20px 0",
+    color: c.text,
+    lineHeight: 1.15
+  }}
+>
                 {tx.title}
               </h1>
 
-              <p style={{ fontSize: 18, color: c.sub, maxWidth: 900, lineHeight: 1.8 }}>
+              <p style={{ fontSize: isMobile ? 15 : 18, color: c.sub, maxWidth: 900, lineHeight: 1.8 }}>
                 {tx.desc}
               </p>
             </div>
@@ -119,13 +139,13 @@ export default function CaseCDPortal({ goBack }: Props) {
               background: c.card,
               border: `1px solid ${c.border}`,
               borderRadius: 20,
-              padding: 30,
+              padding: isMobile ? 16 : 30,
               marginBottom: 60
             }}
           >
             <h2 style={{ color: c.text, marginBottom: 20 }}>{tx.video}</h2>
 
-            <div style={{ width: "100%", height: 420, borderRadius: 16, overflow: "hidden" }}>
+            <div style={{ width: "100%", height: isMobile ? 220 : 420, borderRadius: 16, overflow: "hidden" }}>
               <video
                 src="/videos/camiduda.mp4"
                 controls
@@ -140,8 +160,11 @@ export default function CaseCDPortal({ goBack }: Props) {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "minmax(0,360px) minmax(0,1fr)",
-              gap: 40
+              gridTemplateColumns: isMobile
+  ? "1fr"
+  : "minmax(0,360px) minmax(0,1fr)",
+
+gap: isMobile ? 20 : 40
             }}
           >
             <aside
@@ -149,7 +172,7 @@ export default function CaseCDPortal({ goBack }: Props) {
                 background: c.card,
                 border: `1px solid ${c.border}`,
                 borderRadius: 20,
-                padding: 30,
+                padding: isMobile ? 20 : 30,
                 height: "fit-content"
               }}
             >
@@ -194,7 +217,16 @@ export default function CaseCDPortal({ goBack }: Props) {
               </Card>
 
               <Card title={tx.flow} c={c}>
-                <pre style={{ background: "#020617", color: "#E5E7EB", padding: 20, borderRadius: 12 }}>
+                <pre style={{
+  background: "#020617",
+  color: "#E5E7EB",
+  padding: isMobile ? 14 : 20,
+  borderRadius: 12,
+  fontSize: isMobile ? 10 : 12,
+  overflowX: "auto",
+  whiteSpace: "pre-wrap",
+  wordBreak: "break-word"
+}}>
 {lang === "pt"
 ? `Cadastrar Cliente
 → Registrar Compra
@@ -243,9 +275,9 @@ function Side({ title, items, c }: any) {
   );
 }
 
-function Card({ title, children, c }: any) {
+function Card({ title, children, c, isMobile }: any) {
   return (
-    <div style={{ background: c.card, border: `1px solid ${c.border}`, borderRadius: 20, padding: 40 }}>
+    <div style={{ background: c.card, border: `1px solid ${c.border}`, borderRadius: 20, padding: isMobile ? 20 : 40 }}>
       <h2 style={{ color: c.text, marginBottom: 15 }}>{title}</h2>
       <div style={{ color: c.sub, lineHeight: 1.8 }}>{children}</div>
     </div>

@@ -1,5 +1,6 @@
 import { useLang } from "../context/LangContext";
 import { useTheme } from "../context/ThemeContext";
+import { useState, useEffect } from "react";
 import type { CSSProperties } from "react";
 import Footer from "../components/Footer";
 
@@ -7,85 +8,127 @@ export default function Contact() {
   const { lang } = useLang();
   const { theme } = useTheme();
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   const isDark = theme === "dark";
 
   const colors = {
-    bg: isDark ? "#070A12" : "#F7F8FC",
-    panel: isDark ? "#0C1220" : "#FFFFFF",
-    text: isDark ? "#EAF0FF" : "#0F172A",
-    sub: isDark ? "#9AA4B2" : "#64748B",
-    border: isDark ? "rgba(255,255,255,0.08)" : "#E6EAF2",
-
-    // NOVA PALETA (mais premium)
-    accent: isDark ? "#4DA3FF" : "#2563EB",
-    accentSoft: isDark ? "rgba(77,163,255,0.15)" : "rgba(37,99,235,0.08)",
-
-    glow: isDark ? "rgba(77,163,255,0.25)" : "rgba(37,99,235,0.15)"
+    bg: isDark ? "#1A1A1A" : "#fff",
+    panel: isDark
+      ? "rgba(255,255,255,0.03)"
+      : "rgba(0,0,0,0.03)",
+    text: isDark ? "#EEE" : "#111",
+    sub: isDark ? "#AAA" : "#555",
+    border: isDark
+      ? "rgba(255,255,255,0.08)"
+      : "rgba(0,0,0,0.06)",
+    accent: isDark ? "#8f5a89" : "#60365c"
   };
 
   return (
     <>
-      <section style={{ ...styles.section, background: colors.bg }}>
-        <div style={styles.wrapper}>
-          
-          {/* LEFT */}
+      <section
+        style={{
+          ...styles.section,
+          background: colors.bg,
+          padding: isMobile ? "60px 20px" : "90px 20px"
+        }}
+      >
+        <div
+          style={{
+            ...styles.wrapper,
+            gridTemplateColumns: isMobile ? "1fr" : "1.3fr 0.9fr",
+            gap: isMobile ? 40 : 80
+          }}
+        >
           <div style={styles.left}>
-            <span style={{ ...styles.badge, color: colors.accent }}>
-              {lang === "en" ? "Contact" : "Contato"}
-            </span>
-
-            <h1 style={{ ...styles.title, color: colors.text }}>
-              {lang === "en"
-                ? "Let’s build something!"
-                : "Vamos construir algo!"}
-            </h1>
-
-            <p style={{ ...styles.subtitle, color: colors.sub }}>
-              Power Platform • Automation • Digital Transformation
-            </p>
-
-            <div
+            <span
               style={{
-                ...styles.highlightBox,
-                background: colors.accentSoft,
-                border: `1px solid ${colors.border}`
+                ...styles.badge,
+                color: colors.accent
               }}
             >
-              <p style={{ color: colors.text, margin: 0, fontWeight: 500 }}>
-                {lang === "en"
-                  ? "Fast response • Direct communication • Professional inquiries"
-                  : "Resposta rápida • Contato direto • Projetos profissionais"}
-              </p>
-            </div>
+              {lang === "en" ? "CONTACT" : "CONTATO"}
+            </span>
+
+            <h1
+              style={{
+                ...styles.title,
+                color: colors.text,
+                fontSize: isMobile ? 36 : 56
+              }}
+            >
+              {lang === "en"
+                ? "Let's create something meaningful."
+                : "Vamos criar algo que gere impacto."}
+            </h1>
+
+            <p
+              style={{
+                ...styles.subtitle,
+                color: colors.sub
+              }}
+            >
+              {lang === "en"
+                ? "I'm open to discussing new projects, automation opportunities and digital transformation initiatives."
+                : "Estou aberta para conversar sobre novos projetos, oportunidades de automação e iniciativas de transformação digital."}
+            </p>
+
+            <p
+              style={{
+                color: colors.sub,
+                lineHeight: 1.8,
+                maxWidth: 620,
+                marginTop: 2,
+                fontSize: isMobile ? 14 : 16
+              }}
+            >
+            </p>
           </div>
 
-          {/* RIGHT */}
           <div
             style={{
-              ...styles.right,
+              ...styles.card,
               background: colors.panel,
-              border: `1px solid ${colors.border}`,
-              boxShadow: isDark
-                ? `0 0 60px ${colors.glow}`
-                : "0 20px 50px rgba(0,0,0,0.06)"
+              border: `1px solid ${colors.border}`
             }}
           >
-            <h3 style={{ color: colors.text, marginBottom: 10 }}>
-              {lang === "en" ? "Start a conversation" : "Iniciar conversa"}
+            <h3
+              style={{
+                color: colors.text,
+                marginTop: 0,
+                marginBottom: 8
+              }}
+            >
+              {lang === "en"
+                ? "Get in Touch"
+                : "Entre em Contato"}
             </h3>
 
-            <p style={{ color: colors.sub, fontSize: 14, marginBottom: 20 }}>
+            <p
+              style={{
+                color: colors.sub,
+                fontSize: 14,
+                marginBottom: 24
+              }}
+            >
               {lang === "en"
-                ? "Choose your preferred channel"
-                : "Escolha o canal de contato"}
+                ? "Choose the channel that works best for you."
+                : "Escolha o canal que for mais conveniente para você."}
             </p>
 
             <a
               href="mailto:camilalaurindoreis@gmail.com"
               style={{
                 ...styles.primaryBtn,
-                background: colors.accent,
-                boxShadow: `0 10px 25px ${colors.glow}`
+                background: colors.accent
               }}
             >
               Email
@@ -97,8 +140,8 @@ export default function Contact() {
               rel="noopener noreferrer"
               style={{
                 ...styles.secondaryBtn,
-                border: `1px solid ${colors.border}`,
-                color: colors.text
+                color: colors.text,
+                border: `1px solid ${colors.border}`
               }}
             >
               LinkedIn
@@ -110,8 +153,8 @@ export default function Contact() {
               rel="noopener noreferrer"
               style={{
                 ...styles.secondaryBtn,
-                border: `1px solid ${colors.border}`,
-                color: colors.text
+                color: colors.text,
+                border: `1px solid ${colors.border}`
               }}
             >
               WhatsApp
@@ -126,16 +169,12 @@ export default function Contact() {
 }
 
 const styles: Record<string, CSSProperties> = {
-  section: {
-    padding: "120px 20px"
-  },
+  section: {},
 
   wrapper: {
     maxWidth: 1100,
-    margin: "auto",
+    margin: "0 auto",
     display: "grid",
-    gridTemplateColumns: "1.2fr 1fr",
-    gap: 60,
     alignItems: "center"
   },
 
@@ -152,45 +191,38 @@ const styles: Record<string, CSSProperties> = {
   },
 
   title: {
-    fontSize: 56,
-    fontWeight: 800,
-    lineHeight: 1.05,
+    fontWeight: 700,
+    lineHeight: 1.1,
     margin: "14px 0 18px"
   },
 
   subtitle: {
     fontSize: 18,
-    lineHeight: 1.7,
-    maxWidth: 520
+    lineHeight: 1.8,
+    maxWidth: 620
   },
 
-  highlightBox: {
-    marginTop: 30,
-    padding: 18,
-    borderRadius: 14
-  },
-
-  right: {
-    padding: 40,
-    borderRadius: 24,
+  card: {
+    padding: 32,
+    borderRadius: 16,
     display: "flex",
     flexDirection: "column",
-    gap: 14
+    gap: 12
   },
 
   primaryBtn: {
-    padding: "14px 18px",
-    borderRadius: 12,
+    padding: "12px 18px",
+    borderRadius: 10,
     color: "#fff",
-    fontWeight: 700,
+    fontWeight: 600,
     textDecoration: "none",
     textAlign: "center"
   },
 
   secondaryBtn: {
-    padding: "14px 18px",
-    borderRadius: 12,
-    fontWeight: 600,
+    padding: "12px 18px",
+    borderRadius: 10,
+    fontWeight: 500,
     textDecoration: "none",
     textAlign: "center",
     background: "transparent"
