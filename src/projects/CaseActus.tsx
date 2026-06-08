@@ -1,6 +1,7 @@
 import { useTheme } from "../context/ThemeContext";
 import { useLang } from "../context/LangContext";
 import Footer from "../components/Footer";
+import { useState, useEffect } from "react";
 
 interface Props {
   goBack: () => void;
@@ -9,6 +10,18 @@ interface Props {
 export default function CaseActus({ goBack }: Props) {
   const { theme } = useTheme();
   const { lang } = useLang();
+
+  const [isMobile, setIsMobile] = useState(false);
+
+useEffect(() => {
+  const check = () => setIsMobile(window.innerWidth < 768);
+
+  check();
+
+  window.addEventListener("resize", check);
+
+  return () => window.removeEventListener("resize", check);
+}, []);
 
   const dark = theme === "dark";
 
@@ -53,7 +66,7 @@ export default function CaseActus({ goBack }: Props) {
       <section
         style={{
           background: c.bg,
-          padding: "120px 20px",
+          padding: isMobile ? "90px 16px" : "120px 20px",
           overflowX: "hidden"
         }}
       >
@@ -79,7 +92,7 @@ export default function CaseActus({ goBack }: Props) {
               background: c.card,
               border: `1px solid ${c.border}`,
               borderRadius: 20,
-              padding: 60,
+              padding: isMobile ? 24 : 60,
               marginBottom: 60
             }}
           >
@@ -87,11 +100,18 @@ export default function CaseActus({ goBack }: Props) {
               {tx.tag.toUpperCase()}
             </span>
 
-            <h1 style={{ fontSize: 48, margin: "20px 0", color: c.text }}>
+            <h1
+  style={{
+    fontSize: isMobile ? 30 : 48,
+    margin: "20px 0",
+    color: c.text,
+    lineHeight: 1.15
+  }}
+>
               {tx.title}
             </h1>
 
-            <p style={{ fontSize: 18, color: c.sub, maxWidth: 900, lineHeight: 1.8 }}>
+            <p style={{ fontSize: isMobile ? 15 : 18, color: c.sub, maxWidth: 900, lineHeight: 1.8 }}>
               {tx.desc}
             </p>
           </div>
@@ -102,7 +122,7 @@ export default function CaseActus({ goBack }: Props) {
               background: c.card,
               border: `1px solid ${c.border}`,
               borderRadius: 20,
-              padding: 30,
+              padding: isMobile ? 16 : 30,
               marginBottom: 60
             }}
           >
@@ -111,7 +131,7 @@ export default function CaseActus({ goBack }: Props) {
             <div
   style={{
     width: "100%",
-    height: 420,
+    height: isMobile ? 220 : 420,
     borderRadius: 16,
     overflow: "hidden"
   }}
@@ -136,8 +156,10 @@ export default function CaseActus({ goBack }: Props) {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "minmax(0,360px) minmax(0,1fr)",
-              gap: 40
+              gridTemplateColumns: isMobile
+  ? "1fr"
+  : "minmax(0,360px) minmax(0,1fr)",
+  gap: isMobile ? 20 : 40
             }}
           >
             {/* SIDEBAR */}
@@ -146,7 +168,7 @@ export default function CaseActus({ goBack }: Props) {
                 background: c.card,
                 border: `1px solid ${c.border}`,
                 borderRadius: 20,
-                padding: 30,
+                padding: isMobile ? 20 : 30,
                 height: "fit-content",
                 minWidth: 0
               }}
@@ -183,7 +205,7 @@ export default function CaseActus({ goBack }: Props) {
                 minWidth: 0
               }}
             >
-              <Card title={tx.arch} c={c}>
+              <Card title={tx.arch} c={c} isMobile={isMobile}>
                 {lang === "pt"
                   ? "A solução foi estruturada para suportar operações distribuídas, combinando aplicações operacionais com uma camada robusta de dados e automações. Cada componente cumpre um papel claro dentro do fluxo global de incidentes, permitindo que informações fluam entre áreas, países e sistemas sem perda de consistência. O resultado é uma arquitetura que não apenas suporta o negócio, mas o organiza."
                   : "The solution was designed to support distributed operations, combining operational applications with a robust data and automation layer. Each component plays a clear role within the global incident flow, allowing information to move across areas, countries and systems without losing consistency. The result is an architecture that not only supports the business, but structures it."}
@@ -208,8 +230,10 @@ export default function CaseActus({ goBack }: Props) {
                     color: "#E5E7EB",
                     padding: 20,
                     borderRadius: 12,
-                    fontSize: 12,
-                    overflowX: "auto"
+                    fontSize: isMobile ? 10 : 12,
+overflowX: "auto",
+whiteSpace: "pre-wrap",
+wordBreak: "break-word"
                   }}
                 >
 {`"incident_main_root_cause":
@@ -252,14 +276,14 @@ function Side({ title, items, c }: any) {
   );
 }
 
-function Card({ title, children, c }: any) {
+function Card({ title, children, c, isMobile }: any) {
   return (
     <div
       style={{
         background: c.card,
         border: `1px solid ${c.border}`,
         borderRadius: 20,
-        padding: 40,
+        padding: isMobile ? 20 : 40,
         minWidth: 0
       }}
     >
